@@ -1,0 +1,123 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Monitor de Cobranza</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="css/estiloGeneral.css"> -->
+    <link rel="stylesheet" href="css/estiloActividadAtraso.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="js/scriptGeneral.js"></script>
+    <script src="js/scriptInactividadAtraso.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <form onsubmit="getColocacion()" class="form-group" id="consulta">
+            <div class="row">
+                <div class="col-sm">
+                    <img class="imgMasNomina" src="img/logo_mas_nomina.jpg" alt="">
+                </div>
+                <div class="col-sm">
+                    <h3>Inactividad y atraso</h3>
+                </div>
+                <div class="col-sm">
+                    <label for="mes">Fecha: </label>
+                    <select required name="inputMes" id="inputMes" class="form-control">
+                        <option disabled hidden selected value="">Elija una opción</option>
+                        <option value="201801">2018/01</option>
+                        <option value="201802">2018/02</option>
+                        <option value="201803">2018/03</option>
+                        <option value="201804">2018/04</option>
+                        <option value="201805">2018/05</option>
+                        <option value="201806">2018/06</option>
+                        <option value="201807">2018/07</option>
+                        <option value="201808">2018/08</option>
+                        <option value="201809">2018/09</option>
+                        <option value="201810">2018/10</option>
+                        <option value="201811">2018/11</option>
+                        <option value="201812">2018/12</option>
+                    </select>
+                </div>
+
+
+                <button type="button" id="btnBuscar" class="btn btn-primary" onclick="getColocacion()">Consultar</button>
+            </div>
+        </form>
+
+        <div class="row" id="landing">
+            <h3>Realize una consulta</h3>
+        </div>
+
+        <div class="row" id="loading">
+            <div class="loader">
+                <i class="fas fa-sync"></i>
+                <h3>Cargando...</h3>
+            </div>
+        </div>
+
+        <div class="row" id="body">
+            <div class="tabla" id="colocacion">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="tituloTabla">
+                        </tr>
+                        <tr>
+                            <th style="width: 150px;">Inactividad</th>
+                            <th style="width: 130px;">Actual</th>
+                            <th style="width: 130px;">1-29</th>
+                            <th style="width: 130px;">30-59</th>
+                            <th style="width: 130px;">Atraso 90</th>
+                            <th style="width: 130px;">Atraso 120</th>
+                            <th style="width: 130px;">Atraso 150</th>
+                            <th style="width: 130px;">Atraso 180</th>
+                            <th style="width: 130px;">Atraso 210</th>
+                            <th style="width: 130px;">Atraso 240</th>
+                            <th style="width: 130px;">Atraso 270</th>
+                            <th style="width: 130px;">Atraso > 270</th>
+                            <th style="width: 140px;">TOTAL</th>
+                        </tr>
+                        <tr>
+                            <th colspan="13">$</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaAtraso">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

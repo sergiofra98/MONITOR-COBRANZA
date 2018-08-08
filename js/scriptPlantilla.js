@@ -160,28 +160,28 @@ function getCobranza() {
 
                 switch (i) {
                     case 0: {
-                        append += '<td rowspan="5" style="padding-top: 98px;" class="margenAbajo">' + dataTablas.cartera_datos_operativa_totales.pcts + '</td>'
-                        append += '<td rowspan="5" style="padding-top: 98px;" class="margenAbajo">' + dataTablas.cartera_datos_operativa_totales.pcts_pct + '</td>'
+                        append += '<td rowspan="5" style="padding-top: 98px;" class="verde margenAbajo">' + dataTablas.cartera_datos_operativa_totales.pcts + '</td>'
+                        append += '<td rowspan="5" style="padding-top: 98px;" class="verde margenAbajo">' + dataTablas.cartera_datos_operativa_totales.pcts_pct + '</td>'
                         break;
                     }
                     case 5: {
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales.instalar + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales.instalar_pct + '</td>'
+                        append += '<td class="amarillo">' + dataTablas.cartera_datos_operativa_totales.instalar + '</td>'
+                        append += '<td class="amarillo">' + dataTablas.cartera_datos_operativa_totales.instalar_pct + '</td>'
                         break;
                     }
                     case 6: {
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales.cero + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales.cero_pct + '</td>'
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales.cero + '</td>'
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales.cero_pct + '</td>'
                         break;
                     }
                     case 7: {
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales.bajas + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales.bajas_pct + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales.bajas + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales.bajas_pct + '</td>'
                         break;
                     }
                     case 9: {
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones_pct + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones_pct + '</td>'
                         break;
                     }
                     case 11: {
@@ -231,28 +231,28 @@ function getCobranza() {
 
                 switch (i) {
                     case 0: {
-                        append += '<td rowspan="5" style="padding-top: 98px;" class="margenAbajo">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts + '</td>'
-                        append += '<td rowspan="5" style="padding-top: 98px;" class="margenAbajo">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts_pct + '</td>'
+                        append += '<td rowspan="5" style="padding-top: 98px;" class="verde margenAbajo">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts + '</td>'
+                        append += '<td rowspan="5" style="padding-top: 98px;" class="verde margenAbajo">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts_pct + '</td>'
                         break;
                     }
                     case 5: {
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales_cobrar.instalar + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales_cobrar.instalar_pct + '</td>'
+                        append += '<td class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.instalar + '</td>'
+                        append += '<td class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.instalar_pct + '</td>'
                         break;
                     }
                     case 6: {
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales_cobrar.cero + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_totales_cobrar.cero_pct + '</td>'
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.cero + '</td>'
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.cero_pct + '</td>'
                         break;
                     }
                     case 7: {
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas_pct + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas_pct + '</td>'
                         break;
                     }
                     case 9: {
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones_pct + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones_pct + '</td>'
                         break;
                     }
                     case 11: {

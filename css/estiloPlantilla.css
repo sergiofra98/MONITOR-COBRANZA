@@ -1,7 +1,20 @@
+@media only screen and (min-width: 1700px) {
+    .container{
+        max-width: 1780px;
+    }
+}
+
 body{
     padding-top: 24px; 
-    min-width: 1024px;
-    background-color: rgba(2, 56, 103, 49)
+    background-color: #f3f3f3;
+    color: #2d2026 !important;
+}
+
+
+.imgMasNomina{
+    width: 310px;
+    margin: auto;
+    display: block;
 }
 
 .table{
@@ -12,6 +25,12 @@ body{
 .chart-container {
     width: 80%;
     margin: 0 auto;
+}
+
+thead{
+    background-color: #007bff;
+    color: white;
+    text-align: center;
 }
 
 .table{
@@ -25,11 +44,11 @@ body{
 
 
 .container{
-    min-width: 960px !important;
     background-color: white;
-    border-radius: 18px;
+    border: #535353 solid 4px;
     padding: 24px 18px; 
 }
+
 
 #landing{
     display: none;
@@ -60,9 +79,10 @@ body{
 }
 
 .obscuro{
-    background-color: #f6f6f6;
+    background-color: #e2e2f1;
     font-weight: bold;
 }
+
 
 
 .btn-primary{
@@ -71,7 +91,7 @@ body{
     margin-bottom: 0;
 }
 
-#tituloTabla{
+.tituloTabla{
     background-color: #535353; 
     color: white;
 }
@@ -90,4 +110,19 @@ canvas{
 
 .margenAbajo{
     border-bottom: #535353 3px solid !important;
+}
+
+.rojo{
+    background-color: #e64545;
+    color: white;
+}
+
+.amarillo{
+    color: black;
+    background-color: #f8f879;
+}
+
+.verde{
+    color: white;
+    background-color: #55c555;
 }

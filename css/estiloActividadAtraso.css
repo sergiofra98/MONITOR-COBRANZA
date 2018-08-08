@@ -1,0 +1,147 @@
+@media only screen and (min-width: 1700px) {
+    .container{
+        max-width: 1630px;
+    }
+}
+
+body{
+    padding-top: 24px; 
+    background-color: #f3f3f3;
+    color: #2d2026 !important;
+}
+
+#body{
+    padding: 0;
+}
+
+.imgMasNomina{
+    width: 310px;
+    margin: auto;
+    display: block;
+}
+
+.chart-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.table{
+    float: left;
+    margin: auto;
+    table-layout: fixed; 
+    width: 1600px;
+}
+
+.form-group .row{
+    padding-bottom: 16px;
+    border-bottom: #535353 solid 2px;
+}
+
+
+.container{
+    background-color: white;
+    border: #535353 solid 4px;
+    padding: 24px 18px; 
+}
+
+#landing{
+    display: none;
+}
+
+#landing h3, .loader{
+    margin:auto;
+}
+
+#loading{
+    display: none;
+}
+
+.loader .fas{
+    font-size: 36px;
+    float: left;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader h3{
+    float: right;
+    margin-left: 20px;
+}
+
+thead{
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+.tabla{
+    margin: auto
+}
+
+.obscuro{
+    background-color: #e2e2f1;
+    font-weight: bold;
+}
+
+.btn-primary{
+    height: 55px;
+    margin: 12px;
+    margin-bottom: 0;
+}
+
+.tituloTabla{
+    background-color: #535353; 
+    color: white;
+}
+
+.row{
+    padding-bottom: 12px;
+    overflow-x: auto;
+}
+
+canvas{
+    margin: auto;
+}
+
+.margenAbajo{
+    border-bottom: #535353 3px solid !important;
+}
+
+.rojo{
+    background-color: #e64545;
+    color: white;
+}
+
+.amarillo{
+    color: black;
+    background-color: #f8f879;
+}
+
+.verde{
+    color: white;
+    background-color: #55c555;
+}
+
+.negro{
+    color: white;
+    background-color: #10110c;
+}
+
+#tablaAtraso td span{
+    display: block;
+    width: 100%;
+    float: left;
+}
+
+.num{
+    text-align: right;
+}
+.prc{
+    margin-top: 4px;
+    text-align: center;
+    border-top: 2px solid rgba(220, 220, 220, 0.3);
+}

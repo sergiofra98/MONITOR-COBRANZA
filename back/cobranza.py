@@ -445,8 +445,8 @@ def inactividad_atraso():
 	#se realiza la consulta
 	lista_resultado = []
 	lista_resultado_pct = []
-	lista_datos=[['Nunca Instalados,', 446067883 , 20616801 , 4862620 , 2721655 , 2721655 , 2721655 , 2721655 , 1800754 , 2013615 , 1672655 , 27702112 ],
-				['Con Descuento,', 290328852 , 224716555 , 45696120 , 14874650 , 8459094 , 8091618 , 5613789 , 4208939 , 2908685 , 2110689 , 14185385 ],
+	lista_datos=[['Nunca Instalados', 446067883 , 20616801 , 4862620 , 2721655 , 2721655 , 2721655 , 2721655 , 1800754 , 2013615 , 1672655 , 27702112 ],
+				['Con Descuento', 290328852 , 224716555 , 45696120 , 14874650 , 8459094 , 8091618 , 5613789 , 4208939 , 2908685 , 2110689 , 14185385 ],
 				['Sin pago 30', 27729957 , 16501716 , 10730680 , 4074488 , 1974146 , 1483467 , 1773000 , 1379130 , 1113131 , 786985 , 4627596], 
 				['Sin pago 60', 950778 , 3539560 , 2778711 , 2271862 , 1068169 , 650073 , 820780 , 744019 , 762807 , 537772 , 2381762], 
 				['Sin pago 90', 0   , 255609 , 813249 , 1358210 , 947973 , 570390 , 307464 , 625086 , 1085309 , 720427 , 3464533], 
@@ -479,17 +479,17 @@ def inactividad_atraso():
 		registro = {}
 		registro['id'] = i
 		registro['nombre'] = row[0]
-		registro['actual'] = '{:0,.2f}'.format(row[1])
-		registro['atraso_30'] = '{:0,.2f}'.format(row[2])
-		registro['atraso_60'] = '{:0,.2f}'.format(row[3])
-		registro['atraso_90'] = '{:0,.2f}'.format(row[4])
-		registro['atraso_120'] = '{:0,.2f}'.format(row[5])
-		registro['atraso_150'] = '{:0,.2f}'.format(row[6])
-		registro['atraso_180'] = '{:0,.2f}'.format(row[7])
-		registro['atraso_210'] = '{:0,.2f}'.format(row[8])
-		registro['atraso_240'] = '{:0,.2f}'.format(row[9])
-		registro['atraso_270'] = '{:0,.2f}'.format(row[10])
-		registro['atraso_mas_270'] = '{:0,.2f}'.format(row[11])
+		registro['actual'] = '{:0,.0f}'.format(row[1])
+		registro['atraso_30'] = '{:0,.0f}'.format(row[2])
+		registro['atraso_60'] = '{:0,.0f}'.format(row[3])
+		registro['atraso_90'] = '{:0,.0f}'.format(row[4])
+		registro['atraso_120'] = '{:0,.0f}'.format(row[5])
+		registro['atraso_150'] = '{:0,.0f}'.format(row[6])
+		registro['atraso_180'] = '{:0,.0f}'.format(row[7])
+		registro['atraso_210'] = '{:0,.0f}'.format(row[8])
+		registro['atraso_240'] = '{:0,.0f}'.format(row[9])
+		registro['atraso_270'] = '{:0,.0f}'.format(row[10])
+		registro['atraso_mas_270'] = '{:0,.0f}'.format(row[11])
 		totales['actual'] += row[1]
 		totales['atraso_30'] += row[2]
 		totales['atraso_60'] += row[3]
@@ -505,7 +505,7 @@ def inactividad_atraso():
 		for j, row2 in enumerate(row):
 			if not j == 0:
 				aux_total += row2
-		registro['total'] = '{:0,.2f}'.format(aux_total)
+		registro['total'] = '{:0,.0f}'.format(aux_total)
 		totales['total'] += aux_total
 		lista_resultado.append(registro)
 	
@@ -527,17 +527,17 @@ def inactividad_atraso():
 		registro = {}
 		registro['id'] = i
 		registro['nombre'] = row[0]
-		registro['actual'] = '{:0,.2f}%'.format((row[1]/totales['total'])*100)
-		registro['atraso_30'] = '{:0,.2f}%'.format((row[2]/totales['total'])*100)
-		registro['atraso_60'] = '{:0,.2f}%'.format((row[3]/totales['total'])*100)
-		registro['atraso_90'] = '{:0,.2f}%'.format((row[4]/totales['total'])*100)
-		registro['atraso_120'] = '{:0,.2f}%'.format((row[5]/totales['total'])*100)
-		registro['atraso_150'] = '{:0,.2f}%'.format((row[6]/totales['total'])*100)
-		registro['atraso_180'] = '{:0,.2f}%'.format((row[7]/totales['total'])*100)
-		registro['atraso_210'] = '{:0,.2f}%'.format((row[8]/totales['total'])*100)
-		registro['atraso_240'] = '{:0,.2f}%'.format((row[9]/totales['total'])*100)
-		registro['atraso_270'] = '{:0,.2f}%'.format((row[10]/totales['total'])*100)
-		registro['atraso_mas_270'] = '{:0,.2f}%'.format((row[11]/totales['total'])*100)
+		registro['actual'] = '{:0,.2f}%'.format(((row[1]*1.00)/totales['total'])*100)
+		registro['atraso_30'] = '{:0,.2f}%'.format(((row[2]*1.00)/totales['total'])*100)
+		registro['atraso_60'] = '{:0,.2f}%'.format(((row[3]*1.00)/totales['total'])*100)
+		registro['atraso_90'] = '{:0,.2f}%'.format(((row[4]*1.00)/totales['total'])*100)
+		registro['atraso_120'] = '{:0,.2f}%'.format(((row[5]*1.00)/totales['total'])*100)
+		registro['atraso_150'] = '{:0,.2f}%'.format(((row[6]*1.00)/totales['total'])*100)
+		registro['atraso_180'] = '{:0,.2f}%'.format(((row[7]*1.00)/totales['total'])*100)
+		registro['atraso_210'] = '{:0,.2f}%'.format(((row[8]*1.00)/totales['total'])*100)
+		registro['atraso_240'] = '{:0,.2f}%'.format(((row[9]*1.00)/totales['total'])*100)
+		registro['atraso_270'] = '{:0,.2f}%'.format(((row[10]*1.00)/totales['total'])*100)
+		registro['atraso_mas_270'] = '{:0,.2f}%'.format(((row[11]*1.00)/totales['total'])*100)
 		totales_pct['actual'] += (row[1]/totales['total'])
 		totales_pct['atraso_30'] += (row[2]/totales['total'])
 		totales_pct['atraso_60'] += (row[3]/totales['total'])
@@ -552,18 +552,18 @@ def inactividad_atraso():
 		lista_resultado_pct.append(registro)
 
 	totales['id'] = len(lista_resultado) + 1
-	totales['actual'] = '{:0,.2f}'.format(totales['actual'])
-	totales['atraso_30'] = '{:0,.2f}'.format(totales['atraso_30'])
-	totales['atraso_60'] = '{:0,.2f}'.format(totales['atraso_60'])
-	totales['atraso_90'] = '{:0,.2f}'.format(totales['atraso_90'])
-	totales['atraso_120'] = '{:0,.2f}'.format(totales['atraso_120'])
-	totales['atraso_150'] = '{:0,.2f}'.format(totales['atraso_150'])
-	totales['atraso_180'] = '{:0,.2f}'.format(totales['atraso_180'])
-	totales['atraso_210'] = '{:0,.2f}'.format(totales['atraso_210'])
-	totales['atraso_240'] = '{:0,.2f}'.format(totales['atraso_240'])
-	totales['atraso_270'] = '{:0,.2f}'.format(totales['atraso_270'])
-	totales['atraso_mas_270'] = '{:0,.2f}'.format(totales['atraso_mas_270'])
-	totales['total'] = '{:0,.2f}'.format(totales['total'])
+	totales['actual'] = '{:0,.0f}'.format(totales['actual'])
+	totales['atraso_30'] = '{:0,.0f}'.format(totales['atraso_30'])
+	totales['atraso_60'] = '{:0,.0f}'.format(totales['atraso_60'])
+	totales['atraso_90'] = '{:0,.0f}'.format(totales['atraso_90'])
+	totales['atraso_120'] = '{:0,.0f}'.format(totales['atraso_120'])
+	totales['atraso_150'] = '{:0,.0f}'.format(totales['atraso_150'])
+	totales['atraso_180'] = '{:0,.0f}'.format(totales['atraso_180'])
+	totales['atraso_210'] = '{:0,.0f}'.format(totales['atraso_210'])
+	totales['atraso_240'] = '{:0,.0f}'.format(totales['atraso_240'])
+	totales['atraso_270'] = '{:0,.0f}'.format(totales['atraso_270'])
+	totales['atraso_mas_270'] = '{:0,.0f}'.format(totales['atraso_mas_270'])
+	totales['total'] = '{:0,.0f}'.format(totales['total'])
 
 	totales_pct['id'] = len(lista_resultado_pct) + 1
 	totales_pct['actual'] = '{:0,.2f}%'.format((totales_pct['actual'])*100)
