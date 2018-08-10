@@ -14,6 +14,11 @@ body{
     padding: 0;
 }
 
+.modal{
+    width: 80%; /* respsonsive width */
+    margin-left:-40%; /* width/2) */ 
+}
+
 .imgMasNomina{
     width: 310px;
     margin: auto;
