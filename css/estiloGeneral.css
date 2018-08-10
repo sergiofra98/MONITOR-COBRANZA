@@ -1,0 +1,164 @@
+@media only screen and (min-width: 992px) {
+    .imgMasNomina{
+        width: 210px;
+        margin: auto;
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .imgMasNomina{
+        width: 210px;
+        margin: auto;
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .imgMasNomina{
+        width: 210px;
+        margin: auto;
+        display: block;
+    }
+}
+
+
+body{
+    background-color: white;
+    color: #2d2026 !important;
+    width: calc(100% - 68px);
+    margin: auto;
+    padding: 24px 0;
+    min-width: 1024px;
+}
+
+
+.imgMasNomina{
+    width: 310px;
+    margin: auto;
+    display: block;
+}
+
+.table{
+    float: left;
+    margin-bottom: 0 !important;
+    text-align: center;
+    font-size: 11px !important;
+}
+@media only screen and (min-width: 1370px) {
+    .table{
+        font-size: 11px !important;
+    }
+}
+@media only screen and (min-width: 1500px) {
+    .table{
+        font-size: 13px !important;
+    }
+}
+@media only screen and (min-width: 1600px) {
+    .table{
+        font-size: 15px !important;
+    }
+}
+
+.chart-container {
+    width: 0;
+    margin: 0 auto;
+}
+
+thead{
+    background-color: #007bff;
+    color: white;
+}
+
+.form-group .row{
+    padding-bottom: 16px;
+    border-bottom: #535353 solid 2px;
+}
+
+
+.container{
+    background-color: white;
+    border: #535353 solid 4px;
+    padding: 24px 18px; 
+}
+
+
+#landing{
+    display: none;
+}
+
+#landing h3, .loader{
+    margin:auto;
+}
+
+#loading{
+    display: none;
+}
+
+.loader .fas{
+    font-size: 36px;
+    float: left;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader h3{
+    float: right;
+    margin-left: 20px;
+}
+
+.obscuro{
+    background-color: #e2e2f1;
+    font-weight: bold;
+}
+
+
+
+.btn-primary{
+    height: 55px;
+    margin: 12px;
+    margin-bottom: 0;
+}
+
+.tituloTabla{
+    background-color: #535353; 
+    color: white;
+}
+
+.row{
+    padding-bottom: 12px;
+}
+
+canvas{
+    margin: auto;
+}
+
+
+.rojo{
+    background-color: #e64545;
+    color: white;
+}
+
+.amarillo{
+    color: black;
+    background-color: #f8f879;
+}
+
+.verde{
+    color: white;
+    background-color: #55c555;
+}
+
+.modal-dialog{
+    max-width: 980px;
+}
+
+.btn-link{
+    padding: 0;
+    border: none;
+}

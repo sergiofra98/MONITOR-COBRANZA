@@ -8,24 +8,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 
-    <!-- <link rel="stylesheet" href="css/estiloGeneral.css"> -->
+    <link rel="stylesheet" href="css/estiloGeneral.css">
+    <link rel="stylesheet" href="css/estiloPlantilla.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-    <!-- <script src="js/scriptGeneral.js"></script> -->
+    <script src="js/scriptGeneral.js"></script>
     <script src="js/scriptPlantilla.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
         crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/estiloPlantilla.css">
+
 
 </head>
 
 <body>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -34,8 +35,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" >
-                    <table class="table-bordered" >
+                <div class="modal-body">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Fecha disp.</th>
@@ -49,88 +50,8 @@
                                 <th>Fecha último pago</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr><tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr><tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr><tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr><tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr><tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr><tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr><tr>
-                                <td>23/12/2019</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>50,000</td>
-                                <td>23/12/2019</td>
-                            </tr>
+                        <tbody id="tablaModalDetalle">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -142,244 +63,238 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
-    <div class="container">
-        <form onsubmit="getColocacion()" class="form-group" id="consulta">
-            <div class="row">
-                <div class="col-sm">
-                    <img class="imgMasNomina" src="img/logo_mas_nomina.jpg" alt="">
-                </div>
-                <div class="col-sm">
-                    <h3>General</h3>
-                </div>
-                <div class="col-sm">
-                    <label for="division">Buscar Por: </label>
-                    <select required name="inputDivision" id="inputDivision" class="form-control">
-                        <option value="ANALISTA">Analista</option>
-                        <option value="CORRESPONSAL">Corresponsal</option>
-                    </select>
-                </div>
-                <div class="col-sm">
-                    <label for="mes">Nombre: </label>
-                    <select required name="inputMes" id="inputMes" class="form-control">
-                        <option value="201801">TODAS</option>
-                        <option value="201802">GDF</option>
-                        <option value="201802">SEF CHIAPAS</option>
-                        <option value="201802">IMSS PENSIONADOS</option>
-                        <option value="201802">IMSS JUBILADOS</option>
-                        <option value="201802">PEMEX</option>
-                        <option value="201802">ZULMA CONTRERAS</option>
-                        <option value="201802">CRISTHIAN TORRES</option>
-                        <option value="201802">LUIS SOTO</option>
-                        <option value="201802">ADRIANA RODRIGUEZ</option>
-                        <option value="201802">ARTURO BLANCO</option>
-                        <option value="201802">DAYANA SAUCEDO</option>
-                        <option value="201802">HILARIO ANDRES</option>
-                    </select>
-                </div>
-                <div class="col-sm">
-                    <label for="mes">Fecha: </label>
-                    <select required name="inputMes" id="inputMes" class="form-control">
-                        <option disabled hidden selected value="">Elija una opción</option>
-                        <option value="201801">2018/01</option>
-                        <option value="201802">2018/02</option>
-                        <option value="201803">2018/03</option>
-                        <option value="201804">2018/04</option>
-                        <option value="201805">2018/05</option>
-                        <option value="201806">2018/06</option>
-                        <option value="201807">2018/07</option>
-                        <option value="201808">2018/08</option>
-                        <option value="201809">2018/09</option>
-                        <option value="201810">2018/10</option>
-                        <option value="201811">2018/11</option>
-                        <option value="201812">2018/12</option>
-                    </select>
-                </div>
 
-
-                <button type="button" id="btnBuscar" class="btn btn-primary" onclick="getColocacion()">Consultar</button>
+    <form onsubmit="getColocacion()" class="form-group" id="consulta">
+        <div class="row">
+            <div class="col-sm">
+                <img class="imgMasNomina" src="img/logo_mas_nomina.jpg" alt="">
             </div>
-        </form>
+            <div class="col-sm">
+                <h3>General</h3>
+            </div>
+            <div class="col-sm">
+                <label for="division">Buscar Por: </label>
+                <select required name="inputDivision" id="inputDivision" class="form-control">
+                    <option value="ANALISTA">Analista</option>
+                    <option value="CORRESPONSAL">Corresponsal</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <label for="mes">Nombre: </label>
+                <select required name="inputMes" id="inputMes" class="form-control">
+                    <option value="201801">TODAS</option>
+                    <option value="201802">GDF</option>
+                    <option value="201802">SEF CHIAPAS</option>
+                    <option value="201802">IMSS PENSIONADOS</option>
+                    <option value="201802">IMSS JUBILADOS</option>
+                    <option value="201802">PEMEX</option>
+                    <option value="201802">ZULMA CONTRERAS</option>
+                    <option value="201802">CRISTHIAN TORRES</option>
+                    <option value="201802">LUIS SOTO</option>
+                    <option value="201802">ADRIANA RODRIGUEZ</option>
+                    <option value="201802">ARTURO BLANCO</option>
+                    <option value="201802">DAYANA SAUCEDO</option>
+                    <option value="201802">HILARIO ANDRES</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <label for="mes">Fecha: </label>
+                <select required name="inputMes" id="inputMes" class="form-control">
+                    <option disabled hidden selected value="">Elija una opción</option>
+                    <option value="201801">2018/01</option>
+                    <option value="201802">2018/02</option>
+                    <option value="201803">2018/03</option>
+                    <option value="201804">2018/04</option>
+                    <option value="201805">2018/05</option>
+                    <option value="201806">2018/06</option>
+                    <option value="201807">2018/07</option>
+                    <option value="201808">2018/08</option>
+                    <option value="201809">2018/09</option>
+                    <option value="201810">2018/10</option>
+                    <option value="201811">2018/11</option>
+                    <option value="201812">2018/12</option>
+                </select>
+            </div>
 
-        <div class="row" id="landing">
-            <h3>Realize una consulta</h3>
+
+            <button type="button" id="btnBuscar" class="btn btn-primary" onclick="getColocacion()">Consultar</button>
         </div>
+    </form>
 
-        <div class="row" id="loading">
-            <div class="loader">
-                <i class="fas fa-sync"></i>
-                <h3>Cargando...</h3>
-            </div>
+    <div class="row" id="landing">
+        <h3>Realize una consulta</h3>
+    </div>
+
+    <div class="row" id="loading">
+        <div class="loader">
+            <i class="fas fa-sync"></i>
+            <h3>Cargando...</h3>
         </div>
+    </div>
 
-        <div class="row" id="body">
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>CARTERA</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="tablaColocacionHead">
+    <div class="row" id="body">
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>CARTERA</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="tablaColocacionHead">
 
-                            </tr>
-                        </thead>
-                        <tbody id="tablaColocacionBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>&nbsp;</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="tablaColocacionPrcHead">
-
-                            </tr>
-                        </thead>
-                        <tbody id="tablaColocacionPrcBody">
-                        </tbody>
-                    </table>
-                </div>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaColocacionBody">
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="row" id="body">
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>Cartera</h4>
-                    <table class="table table-bordered">
-                        <tbody id="tablaCarteraContable">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>Cartera</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ACA</th>
-                                <th>MA</th>
-                            </tr>
-                        </thead>
-                        <tbody id="VSBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>&nbsp;</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="tablaColocacionPrcHead">
 
-        <div class="row" id="body">
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="CarteraHead">
-
-                            </tr>
-                        </thead>
-                        <tbody id="CarteerBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="CarteraPctHead">
-
-                            </tr>
-                        </thead>
-                        <tbody id="CarteerPctBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" id="body">
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>CARTERA OPERATIVA</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="CarteraOperativaHead">
-                                <th></th>
-                                <th>VIGENTE</th>
-                                <th>VENCIDA</th>
-                                <th>CASTIGO CONTABLE</th>
-                                <th>CASTIGO FISCAL</th>
-                                <th style="color: #fff; background-color: #212529;">TOTAL</th>
-                                <th>TOTAL</th>
-                                <th>%</th>
-                            </tr>
-                        </thead>
-                        <tbody id="CarteraOperativaBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" id="body">
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>CARTERA OPERATIVA POR COBRAR</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="CarteraOperativaCobrarHead">
-                                <th></th>
-                                <th>VIGENTE</th>
-                                <th>VENCIDA</th>
-                                <th>CASTIGO CONTABLE</th>
-                                <th>CASTIGO FISCAL</th>
-                                <th style="color: #fff; background-color: #212529;">TOTAL</th>
-                                <th>TOTAL</th>
-                                <th>%</th>
-                            </tr>
-                        </thead>
-                        <tbody id="CarteraOperativaCobrarBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" id="body">
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>NEVER PAID</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="NeverPaidHead">
-
-                            </tr>
-                        </thead>
-                        <tbody id="NeverPaidBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col">
-                <div class="tabla" id="colocacion">
-                    <h4>NEVER PAID: CRÉDITOS</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="NeverPaidCredHead">
-
-                            </tr>
-                        </thead>
-                        <tbody id="NeverPaidCredBody">
-                        </tbody>
-                    </table>
-                </div>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaColocacionPrcBody">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+    <div class="row" id="body">
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>Cartera</h4>
+                <table class="table table-bordered">
+                    <tbody id="tablaCarteraContable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>Cartera</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ACA</th>
+                            <th>MA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="VSBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    <div class="row" id="body">
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="CarteraHead">
+
+                        </tr>
+                    </thead>
+                    <tbody id="CarteerBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="CarteraPctHead">
+
+                        </tr>
+                    </thead>
+                    <tbody id="CarteerPctBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="body">
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>CARTERA OPERATIVA</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="CarteraOperativaHead">
+                            <th></th>
+                            <th>VIGENTE</th>
+                            <th>VENCIDA</th>
+                            <th>CASTIGO CONTABLE</th>
+                            <th>CASTIGO FISCAL</th>
+                            <th style="color: #fff; background-color: #212529;">TOTAL</th>
+                            <th>TOTAL</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="CarteraOperativaBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="body">
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>CARTERA OPERATIVA POR COBRAR</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="CarteraOperativaCobrarHead">
+                            <th></th>
+                            <th>VIGENTE</th>
+                            <th>VENCIDA</th>
+                            <th>CASTIGO CONTABLE</th>
+                            <th>CASTIGO FISCAL</th>
+                            <th style="color: #fff; background-color: #212529;">TOTAL</th>
+                            <th>TOTAL</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="CarteraOperativaCobrarBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="body">
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>NEVER PAID</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="NeverPaidHead">
+
+                        </tr>
+                    </thead>
+                    <tbody id="NeverPaidBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="tabla" id="colocacion">
+                <h4>NEVER PAID: CRÉDITOS</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr id="NeverPaidCredHead">
+
+                        </tr>
+                    </thead>
+                    <tbody id="NeverPaidCredBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 

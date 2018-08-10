@@ -1,8 +1,13 @@
-linkCobranza = "http://127.0.0.1:9999/MasNomina/MonitorCobranza"
-
 $(function () {
     getCobranza();
 });
+
+var cantidadEnum = ['cien', 'noventa', 'sesenta', 'treinta', 'uno', 'porInstalar', 'cero', 'bajasRecuperacion', 'bajas', 'defunciones', 'fraudes'];
+var tipoEnum = ['vigente', 'vencida', 'castigoContable', 'castigoFiscal'];
+
+function generarStringDetalle(i, j) {
+    return "'" + tipoEnum[i] + "' , '" + cantidadEnum[j] + "'"
+}
 
 function getCobranza() {
     $.getJSON(linkCobranza + "/general", {},
@@ -127,6 +132,8 @@ function getCobranza() {
             //CARTERA OPERATIVA
             append = ""
 
+
+
             for (i = 0; i < 12; i++) {
                 append += "<tr>";
 
@@ -141,18 +148,18 @@ function getCobranza() {
                 else {
                     if (i === 4) {
                         append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa[i].nombre + '</td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa[i].VIGENTE + '</button></td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(1, i) + ')">' + dataTablas.cartera_datos_operativa[i].CASTIGO_CONTABLE + '</button></td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(2, i) + ')">' + dataTablas.cartera_datos_operativa[i].CASTIGO_FISCAL + '</button></td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(3, i) + ')">' + dataTablas.cartera_datos_operativa[i].TOTAL + '</button></td>'
                         append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa[i].VIGENTE + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa[i].VENCIDA + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa[i].CASTIGO_CONTABLE + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa[i].CASTIGO_FISCAL + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa[i].TOTAL + '</td>'
                     }
                     else {
                         append += '<td>' + dataTablas.cartera_datos_operativa[i].nombre + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa[i].VIGENTE + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa[i].VENCIDA + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa[i].CASTIGO_CONTABLE + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa[i].CASTIGO_FISCAL + '</td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa[i].VIGENTE + '</button></td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(1, i) + ')">' + dataTablas.cartera_datos_operativa[i].VENCIDA + '</button></td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(2, i) + ')">' + dataTablas.cartera_datos_operativa[i].CASTIGO_CONTABLE + '</button></td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(3, i) + ')">' + dataTablas.cartera_datos_operativa[i].CASTIGO_FISCAL + '</button></td>'
                         append += '<td>' + dataTablas.cartera_datos_operativa[i].TOTAL + '</td>'
                     }
 
@@ -212,18 +219,18 @@ function getCobranza() {
                 else {
                     if (i === 4) {
                         append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa_cobrar[i].nombre + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa_cobrar[i].VIGENTE + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa_cobrar[i].VENCIDA + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_CONTABLE + '</td>'
-                        append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_FISCAL + '</td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].VIGENTE + '</button></td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].VENCIDA + '</button></td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_CONTABLE + '</button></td>'
+                        append += '<td class="margenAbajo"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_FISCAL + '</button></td>'
                         append += '<td class="margenAbajo">' + dataTablas.cartera_datos_operativa_cobrar[i].TOTAL + '</td>'
                     }
                     else {
                         append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].nombre + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].VIGENTE + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].VENCIDA + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_CONTABLE + '</td>'
-                        append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_FISCAL + '</td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].VIGENTE + '</button></td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(1, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].VENCIDA + '</button></td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(2, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_CONTABLE + '</button></td>'
+                        append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(3, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_FISCAL + '</button></td>'
                         append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].TOTAL + '</td>'
                     }
 
@@ -318,4 +325,87 @@ function getCobranza() {
         .fail(function (textStatus) {
             $('#loading').css("display", "none");
         });
+}
+
+function modalDetalle(tipo, tiempo) {
+    $('#tablaModalDetalle').html('');
+
+    console.log(tipo);
+    console.log(tiempo);
+    data = [
+        {
+            fechaDisp: "09/03/2018",
+            credito: "222",
+            corresponsal: "432",
+            diasVencidos: "e32",
+            estatusContable: "exito",
+            estatusOperativo: "no",
+            saldo: "222",
+            signoInt: "FEcha de liquido",
+            fechaUltimoPago: "03/03/2018",
+        },
+        {
+            fechaDisp: "09/03/2018",
+            credito: "222",
+            corresponsal: "432",
+            diasVencidos: "e32",
+            estatusContable: "exito",
+            estatusOperativo: "no",
+            saldo: "222",
+            signoInt: "FEcha de liquido",
+            fechaUltimoPago: "03/03/2018",
+        }, {
+            fechaDisp: "09/03/2018",
+            credito: "222",
+            corresponsal: "432",
+            diasVencidos: "e32",
+            estatusContable: "exito",
+            estatusOperativo: "no",
+            saldo: "222",
+            signoInt: "FEcha de liquido",
+            fechaUltimoPago: "03/03/2018",
+        }, {
+            fechaDisp: "09/03/2018",
+            credito: "222",
+            corresponsal: "432",
+            diasVencidos: "e32",
+            estatusContable: "exito",
+            estatusOperativo: "no",
+            saldo: "222",
+            signoInt: "FEcha de liquido",
+            fechaUltimoPago: "03/03/2018",
+        }, {
+            fechaDisp: "09/03/2018",
+            credito: "222",
+            corresponsal: "432",
+            diasVencidos: "e32",
+            estatusContable: "exito",
+            estatusOperativo: "no",
+            saldo: "222",
+            signoInt: "FEcha de liquido",
+            fechaUltimoPago: "03/03/2018",
+        }
+    ]
+
+    append = "";
+    for (let i = 0; i < data.length; i++) {
+        append += '<tr>'
+        append += '<td>' + data[i].fechaDisp + '</td>'
+        append += '<td>' + data[i].credito + '</td>'
+        append += '<td>' + data[i].corresponsal + '</td>'
+        append += '<td>' + data[i].diasVencidos + '</td>'
+        append += '<td>' + data[i].estatusContable + '</td>'
+        append += '<td>' + data[i].estatusOperativo + '</td>'
+        append += '<td>' + data[i].saldo + '</td>'
+        append += '<td>' + data[i].signoInt + '</td>'
+        append += '<td>' + data[i].fechaUltimoPago + '</td>'
+        append += '</tr>'
+    }
+
+    $('#tablaModalDetalle').append(append);
+    $("#modalDetalle").modal()
+}
+
+function descargarDetalle() {
+
 }
