@@ -25,3 +25,7 @@ table{
     text-align: center;
     border-top: 2px solid rgba(220, 220, 220, 0.3);
 }
+
+.btn-link, .btn-link:hover, .btn-link:active, .btn-link:visited {
+    color: inherit !important;
+}

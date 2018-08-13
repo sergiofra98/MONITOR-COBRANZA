@@ -33,27 +33,37 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Fecha disp.</th>
-                                <th>Crédito</th>
-                                <th>Corresponsal</th>
-                                <th>Días vencidos</th>
-                                <th>Estatus contable</th>
-                                <th>Estatus operativo</th>
-                                <th>Saldo</th>
-                                <th>?</th>
-                                <th>Fecha último pago</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaModalDetalle">
+                    <div class="row" id="loadingDetalle">
+                        <div class="loader">
+                            <i class="fas fa-sync"></i>
+                            <h3>Cargando...</h3>
+                        </div>
+                    </div>
 
-                        </tbody>
-                    </table>
+                    <div id="tablaDetalle">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Fecha disp.</th>
+                                    <th>Crédito</th>
+                                    <th>Corresponsal</th>
+                                    <th>Días vencidos</th>
+                                    <th>Estatus contable</th>
+                                    <th>Estatus operativo</th>
+                                    <th>Saldo</th>
+                                    <th>?</th>
+                                    <th>Fecha último pago</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaModalDetalle">
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Descargar detalle&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-success" id="btnCSV" data-dismiss="modal">Descargar detalle&nbsp;&nbsp;&nbsp;
                         <i class="fas fa-file-excel"></i>
                     </button>
                 </div>
@@ -61,7 +71,7 @@
         </div>
     </div>
 
-    <form onsubmit="getColocacion()" class="form-group" id="consulta">
+    <form onsubmit="getInactividadAtrazo()" class="form-group" id="consulta">
         <div class="row">
             <div class="col-sm">
                 <img class="imgMasNomina" src="img/logo_mas_nomina.jpg" alt="">
@@ -89,7 +99,7 @@
             </div>
 
 
-            <button type="button" id="btnBuscar" class="btn btn-primary" onclick="getColocacion()">Consultar</button>
+            <button type="button" id="btnBuscar" class="btn btn-primary" onclick="getInactividadAtrazo()">Consultar</button>
         </div>
     </form>
 

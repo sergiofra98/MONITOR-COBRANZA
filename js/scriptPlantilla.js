@@ -1,5 +1,8 @@
+var graficaCartera = 0;
+
 $(function () {
     getCobranza();
+    generarCharts();
 });
 
 var cantidadEnum = ['cien', 'noventa', 'sesenta', 'treinta', 'uno', 'porInstalar', 'cero', 'bajasRecuperacion', 'bajas', 'defunciones', 'fraudes'];
@@ -13,7 +16,6 @@ function getCobranza() {
     $.getJSON(linkCobranza + "/general", {},
         function (dataTablas) {
             console.log(dataTablas)
-
             var append = ""
             var i = 0;
             var j = 0;
@@ -317,6 +319,13 @@ function getCobranza() {
             }
             $('#NeverPaidCredBody').append(append)
 
+            generarCharts(
+                [dataTablas.cartera_datos[0][1], dataTablas.cartera_datos[0][2], dataTablas.cartera_datos[0][3]],
+                [parseFloat(dataTablas.cartera_datos_pct[1][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][1].replace(/%/g, ''))],
+                [parseFloat(dataTablas.cartera_datos_pct[1][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][2].replace(/%/g, ''))],
+                [parseFloat(dataTablas.cartera_datos_pct[1][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][3].replace(/%/g, ''))]
+            )
+
         })
         .done(function () {
             $('#body, #titulo').css("display", "flex");
@@ -328,82 +337,88 @@ function getCobranza() {
 }
 
 function modalDetalle(tipo, tiempo) {
-    $('#tablaModalDetalle').html('');
+    $('#inactividad_atraso_detalle').html('');
 
-    console.log(tipo);
-    console.log(tiempo);
-    data = [
-        {
-            fechaDisp: "09/03/2018",
-            credito: "222",
-            corresponsal: "432",
-            diasVencidos: "e32",
-            estatusContable: "exito",
-            estatusOperativo: "no",
-            saldo: "222",
-            signoInt: "FEcha de liquido",
-            fechaUltimoPago: "03/03/2018",
+    $.getJSON(linkCobranza + "/general", {},
+        function (data) {
+            append = "";
+            for (let i = 0; i < data.length; i++) {
+                append += '<tr>'
+                append += '<td>' + data[i].fechaDisp + '</td>'
+                append += '<td>' + data[i].credito + '</td>'
+                append += '<td>' + data[i].corresponsal + '</td>'
+                append += '<td>' + data[i].diasVencidos + '</td>'
+                append += '<td>' + data[i].estatusContable + '</td>'
+                append += '<td>' + data[i].estatusOperativo + '</td>'
+                append += '<td>' + data[i].saldo + '</td>'
+                append += '<td>' + data[i].signoInt + '</td>'
+                append += '<td>' + data[i].fechaUltimoPago + '</td>'
+                append += '</tr>'
+
+            }
+        })
+        .done(function () {
+            $('#tablaModalDetalle').append(append);
+            $("#modalDetalle").modal()
+
+            $('#body, #titulo').css("display", "flex");
+            $('#loading').css("display", "none");
+        })
+        .fail(function (textStatus) {
+            $('#loading').css("display", "none");
+        });
+
+
+}
+
+function generarCharts(meses, mes1, mes2, mes3) {
+    console.log(mes1)
+    console.log(mes2)
+    console.log(mes3)
+    graficaCartera = new Chart($("#canvasCartera"), {
+        type: 'bar',
+        data: {
+            labels: meses,
+            datasets: [
+                {
+                    backgroundColor: ["#a50000", "#ff0000", "#f8f879", "#55c555"],
+                    data: [mes1[0], mes1[1], mes1[2], mes1[3]]
+                },
+                {
+                    backgroundColor: ["#a50000", "#ff0000", "#f8f879", "#55c555"],
+                    data: [mes2[0], mes2[1], mes2[2], mes2[3]]
+                },
+                {
+                    backgroundColor: ["#a50000", "#ff0000", "#f8f879", "#55c555"],
+                    data: [mes3[0], mes3[1], mes3[2], mes3[3]]
+                },
+            ]
         },
-        {
-            fechaDisp: "09/03/2018",
-            credito: "222",
-            corresponsal: "432",
-            diasVencidos: "e32",
-            estatusContable: "exito",
-            estatusOperativo: "no",
-            saldo: "222",
-            signoInt: "FEcha de liquido",
-            fechaUltimoPago: "03/03/2018",
-        }, {
-            fechaDisp: "09/03/2018",
-            credito: "222",
-            corresponsal: "432",
-            diasVencidos: "e32",
-            estatusContable: "exito",
-            estatusOperativo: "no",
-            saldo: "222",
-            signoInt: "FEcha de liquido",
-            fechaUltimoPago: "03/03/2018",
-        }, {
-            fechaDisp: "09/03/2018",
-            credito: "222",
-            corresponsal: "432",
-            diasVencidos: "e32",
-            estatusContable: "exito",
-            estatusOperativo: "no",
-            saldo: "222",
-            signoInt: "FEcha de liquido",
-            fechaUltimoPago: "03/03/2018",
-        }, {
-            fechaDisp: "09/03/2018",
-            credito: "222",
-            corresponsal: "432",
-            diasVencidos: "e32",
-            estatusContable: "exito",
-            estatusOperativo: "no",
-            saldo: "222",
-            signoInt: "FEcha de liquido",
-            fechaUltimoPago: "03/03/2018",
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Cartera'
+            },
+            scales: {
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    stacked: true,
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+
+            }
         }
-    ]
+    });
 
-    append = "";
-    for (let i = 0; i < data.length; i++) {
-        append += '<tr>'
-        append += '<td>' + data[i].fechaDisp + '</td>'
-        append += '<td>' + data[i].credito + '</td>'
-        append += '<td>' + data[i].corresponsal + '</td>'
-        append += '<td>' + data[i].diasVencidos + '</td>'
-        append += '<td>' + data[i].estatusContable + '</td>'
-        append += '<td>' + data[i].estatusOperativo + '</td>'
-        append += '<td>' + data[i].saldo + '</td>'
-        append += '<td>' + data[i].signoInt + '</td>'
-        append += '<td>' + data[i].fechaUltimoPago + '</td>'
-        append += '</tr>'
-    }
-
-    $('#tablaModalDetalle').append(append);
-    $("#modalDetalle").modal()
+    console.log(graficaCartera)
 }
 
 function descargarDetalle() {
