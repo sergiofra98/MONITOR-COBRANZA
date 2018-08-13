@@ -76,14 +76,6 @@ thead{
     border-bottom: #535353 solid 2px;
 }
 
-
-.container{
-    background-color: white;
-    border: #535353 solid 4px;
-    padding: 24px 18px; 
-}
-
-
 #landing{
     display: none;
 }
@@ -161,4 +153,13 @@ canvas{
 .btn-link{
     padding: 0;
     border: none;
+}
+
+
+
+.btn-link, .btn-link:hover, .btn-link:active, .btn-link:visited {
+    color: inherit !important;
+    font-size: inherit !important;
+    text-align: inherit !important;
+    text-decoration: underline;
 }

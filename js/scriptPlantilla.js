@@ -1,4 +1,5 @@
 var graficaCartera = 0;
+var graficaCarteraBuckets = 0;
 
 $(function () {
     getCobranza();
@@ -15,7 +16,6 @@ function generarStringDetalle(i, j) {
 function getCobranza() {
     $.getJSON(linkCobranza + "/general", {},
         function (dataTablas) {
-            console.log(dataTablas)
             var append = ""
             var i = 0;
             var j = 0;
@@ -24,9 +24,16 @@ function getCobranza() {
             for (i; i < 4; i++) {
                 append += '<th>' + dataTablas.cartera_datos[0][i] + '</th>'
             }
+            for (i = 1; i < 4; i++) {
+                if (i == 1) {
+                    append += '<th class="margen-izq">' + dataTablas.cartera_datos[0][i] + '</th>'
+                }
+                else {
+                    append += '<th>' + dataTablas.cartera_datos[0][i] + '</th>'
+                }
+            }
             $('#tablaColocacionHead').append(append)
-            $('#tablaColocacionPrcHead').append(append)
-            $('#tablaColocacionPrcHead').append('<th></th>')
+            $('#tablaColocacionHead').append('<th></th>')
 
             append = "";
 
@@ -41,30 +48,30 @@ function getCobranza() {
                 for (j = 0; j < 4; j++) {
                     append += '<td>' + dataTablas.cartera_datos[i][j] + '</td>'
                 }
-                append += '</tr>'
-            }
 
-            $('#tablaColocacionBody').append(append)
+                if(i === 5){
+                    append += '<td class="margen-izq">100%</td><td>100%</td><td>100%</td><tr>';
+                    break;
+                }
 
-            append = "";
-
-            for (i = 1; i < dataTablas.cartera_datos_pct.length; i++) {
-                append += '<tr>'
-                for (j = 0; j < 5; j++) {
-                    if (j < 4) {
-                        append += '<td>' + dataTablas.cartera_datos_pct[i][j] + '</td>'
+                for (j = 1; j < 5; j++) {
+                    if(j === 1){
+                        append += '<td class="margen-izq">' + dataTablas.cartera_datos_pct[i][j] + '</td>'
                     }
-                    else {
-                        append += '<td class="' + dataTablas.cartera_datos_pct[i][j] + '"></td>'
+                    else{
+                        if (j < 4) {
+                            append += '<td>' + dataTablas.cartera_datos_pct[i][j] + '</td>'
+                        }
+                        else {
+                            append += '<td class="' + dataTablas.cartera_datos_pct[i][j] + '"></td>'
+                        }
                     }
+                    
                 }
                 append += '</tr>'
             }
 
-            append += '<tr class="obscuro"><td></td><td>100%</td><td>100%</td><td>100%</td><tr>'
-
-
-            $('#tablaColocacionPrcBody').append(append)
+            $('#tablaColocacionBody').append(append)
 
             append = "";
             append += '<tr> <th>Cartera Contable</th>'
@@ -87,6 +94,16 @@ function getCobranza() {
             for (i = 0; i < 3; i++) {
                 append += '<th>' + dataTablas.cartera_datos_bucket[0][i] + '</th>'
             }
+            for (i = 0; i < 3; i++) {
+                if (i == 0) {
+                    append += '<th class="margen-izq">' + dataTablas.cartera_datos_pct_bucket[0][i] + '</th>'
+                }
+                else {
+                    append += '<th>' + dataTablas.cartera_datos_pct_bucket[0][i] + '</th>'
+
+                }
+            }
+            append += "<th></th>";
             $('#CarteraHead').append(append)
 
             append = "";
@@ -101,40 +118,34 @@ function getCobranza() {
                 for (j = 0; j < 4; j++) {
                     append += '<td>' + dataTablas.cartera_datos_bucket[i][j] + '</td>'
                 }
+
+                if (i == 10) {
+                    append += '<td class="margen-izq">100%</td><td>100%</td><td>100%</td>'
+                    break;
+                }
+
+                for (j = 1; j < 5; j++) {
+                    if (j == 1) {
+                        append += '<td class="margen-izq">' + dataTablas.cartera_datos_pct_bucket[i][j] + '</td>'
+                    }
+                    else {
+                        if (j < 4) {
+                            append += '<td>' + dataTablas.cartera_datos_pct_bucket[i][j] + '</td>'
+                        }
+                        else {
+                            append += '<td class="' + dataTablas.cartera_datos_pct_bucket[i][j] + '"></td>'
+                        }
+                    }
+
+                }
+
                 append += '</tr>'
             }
 
             $('#CarteerBody').append(append)
 
-            //CARTERA POR BUCKET PORCENTAJE
-            append = "";
-            for (i = 0; i < 3; i++) {
-                append += '<th>' + dataTablas.cartera_datos_pct_bucket[0][i] + '</th>'
-            }
-            append += "<th></th>";
-            $('#CarteraPctHead').append(append)
-
-            append = "";
-
-            for (i = 1; i < dataTablas.cartera_datos_pct_bucket.length; i++) {
-                append += '<tr>'
-                for (j = 1; j < 5; j++) {
-                    if (j < 4) {
-                        append += '<td>' + dataTablas.cartera_datos_pct_bucket[i][j] + '</td>'
-                    }
-                    else {
-                        append += '<td class="' + dataTablas.cartera_datos_pct_bucket[i][j] + '"></td>'
-                    }
-                }
-                append += '</tr>'
-            }
-            append += '<tr class="obscuro"><td>100%</td><td>100%</td><td>100%</td><tr>'
-            $('#CarteerPctBody').append(append)
-
             //CARTERA OPERATIVA
             append = ""
-
-
 
             for (i = 0; i < 12; i++) {
                 append += "<tr>";
@@ -319,12 +330,29 @@ function getCobranza() {
             }
             $('#NeverPaidCredBody').append(append)
 
+            if (graficaCartera) {
+                graficaCartera.destroy();
+            }
+
+            console.log(dataTablas);
             generarCharts(
                 [dataTablas.cartera_datos[0][1], dataTablas.cartera_datos[0][2], dataTablas.cartera_datos[0][3]],
                 [parseFloat(dataTablas.cartera_datos_pct[1][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][1].replace(/%/g, ''))],
                 [parseFloat(dataTablas.cartera_datos_pct[1][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][2].replace(/%/g, ''))],
-                [parseFloat(dataTablas.cartera_datos_pct[1][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][3].replace(/%/g, ''))]
+                [parseFloat(dataTablas.cartera_datos_pct[1][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][3].replace(/%/g, ''))],
+                '#canvasCartera',
+                'CARTERA'
+            );
+
+            generarCharts(
+                [dataTablas.cartera_datos[0][1], dataTablas.cartera_datos[0][2], dataTablas.cartera_datos[0][3]],
+                [parseFloat(dataTablas.cartera_datos_pct_bucket[1][1].replace(/%/g, '')).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[2][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][1].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[5][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][1].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[8][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][1].replace(/%/g, ''))).toFixed(2)],
+                [parseFloat(dataTablas.cartera_datos_pct_bucket[1][2].replace(/%/g, '')).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[2][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][2].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[5][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][2].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[8][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][2].replace(/%/g, ''))).toFixed(2)],
+                [parseFloat(dataTablas.cartera_datos_pct_bucket[1][3].replace(/%/g, '')).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[2][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][3].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[5][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][3].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[8][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][3].replace(/%/g, ''))).toFixed(2)],
+                '#canvasCarteraBuckets',
+                'CARTERA POR BUCKETS'
             )
+
 
         })
         .done(function () {
@@ -337,9 +365,13 @@ function getCobranza() {
 }
 
 function modalDetalle(tipo, tiempo) {
-    $('#inactividad_atraso_detalle').html('');
+    $('#tablaModalDetalle').html('');
+    $('#loadingDetalle').css("display", "flex");
+    $('#tablaDetalle').css("display", "none");
+    $("#modalDetalle").modal()
+    $('#btnCSV').prop('disabled', true);
 
-    $.getJSON(linkCobranza + "/general", {},
+    $.getJSON(linkCobranza + "/general_detalle", { 'tipo': tipo, 'tiempo': tiempo },
         function (data) {
             append = "";
             for (let i = 0; i < data.length; i++) {
@@ -359,10 +391,10 @@ function modalDetalle(tipo, tiempo) {
         })
         .done(function () {
             $('#tablaModalDetalle').append(append);
-            $("#modalDetalle").modal()
 
-            $('#body, #titulo').css("display", "flex");
-            $('#loading').css("display", "none");
+            $('#loadingDetalle').css("display", "none");
+            $('#tablaDetalle').css("display", "flex");
+            $('#btnCSV').prop('disabled', false);
         })
         .fail(function (textStatus) {
             $('#loading').css("display", "none");
@@ -371,54 +403,50 @@ function modalDetalle(tipo, tiempo) {
 
 }
 
-function generarCharts(meses, mes1, mes2, mes3) {
-    console.log(mes1)
-    console.log(mes2)
-    console.log(mes3)
-    graficaCartera = new Chart($("#canvasCartera"), {
+function generarCharts(meses, mes1, mes2, mes3, grafica, titulo) {
+    graficaCartera = new Chart($(grafica), {
         type: 'bar',
         data: {
             labels: meses,
             datasets: [
                 {
-                    backgroundColor: ["#a50000", "#ff0000", "#f8f879", "#55c555"],
-                    data: [mes1[0], mes1[1], mes1[2], mes1[3]]
+                    label: "VIGENTE",
+                    backgroundColor: ["#55c555", "#55c555", "#55c555"],
+                    data: [mes1[3], mes2[3], mes3[3]],
+                    stack: 4
                 },
                 {
-                    backgroundColor: ["#a50000", "#ff0000", "#f8f879", "#55c555"],
-                    data: [mes2[0], mes2[1], mes2[2], mes2[3]]
+                    label: "VENCIDA",
+                    backgroundColor: ["#f8f879", "#f8f879", "#f8f879"],
+                    data: [mes1[2], mes2[2], mes3[2]],
+                    stack: 4
                 },
                 {
-                    backgroundColor: ["#a50000", "#ff0000", "#f8f879", "#55c555"],
-                    data: [mes3[0], mes3[1], mes3[2], mes3[3]]
+                    label: "CASTIGO CONTABLE",
+                    backgroundColor: ["#ff0000", "#ff0000", "#ff0000"],
+                    data: [mes1[1], mes2[1], mes3[1]],
+                    stack: 4
                 },
+                {
+                    label: "CASTIGO FISCAL",
+                    backgroundColor: ["#a50000", "#a50000", "#a50000"],
+                    data: [mes1[0], mes2[0], mes3[0]],
+                    stack: 4
+                }
             ]
         },
         options: {
-            legend: { display: false },
+            legend: {
+                display: true
+            },
+            maintainAspectRatio: false,
+            responsive: true,
             title: {
                 display: true,
-                text: 'Cartera'
-            },
-            scales: {
-                yAxes: [{
-                    stacked: true,
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                xAxes: [{
-                    stacked: true,
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-
+                text: titulo
             }
         }
     });
-
-    console.log(graficaCartera)
 }
 
 function descargarDetalle() {

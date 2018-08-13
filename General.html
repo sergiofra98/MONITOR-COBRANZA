@@ -36,27 +36,37 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Fecha disp.</th>
-                                <th>Crédito</th>
-                                <th>Corresponsal</th>
-                                <th>Días vencidos</th>
-                                <th>Estatus contable</th>
-                                <th>Estatus operativo</th>
-                                <th>Saldo</th>
-                                <th>?</th>
-                                <th>Fecha último pago</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaModalDetalle">
+                    <div class="row" id="loadingDetalle">
+                        <div class="loader">
+                            <i class="fas fa-sync"></i>
+                            <h3>Cargando...</h3>
+                        </div>
+                    </div>
 
-                        </tbody>
-                    </table>
+                    <div id="tablaDetalle">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Fecha disp.</th>
+                                    <th>Crédito</th>
+                                    <th>Corresponsal</th>
+                                    <th>Días vencidos</th>
+                                    <th>Estatus contable</th>
+                                    <th>Estatus operativo</th>
+                                    <th>Saldo</th>
+                                    <th>?</th>
+                                    <th>Fecha último pago</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaModalDetalle">
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Descargar detalle&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-success" id="btnCSV" data-dismiss="modal">Descargar detalle&nbsp;&nbsp;&nbsp;
                         <i class="fas fa-file-excel"></i>
                     </button>
                 </div>
@@ -136,58 +146,38 @@
         <div class="col">
             <div class="row" id="body">
                 <div class="col">
-                    <div class="tabla" id="colocacion">
-                        <h4>CARTERA</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr id="tablaColocacionHead">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="tituloTabla">CARTERA</th>
+                            </tr>
+                            <tr id="tablaColocacionHead">
 
-                                </tr>
-                            </thead>
-                            <tbody id="tablaColocacionBody">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tabla" id="colocacion">
-                        <h4>&nbsp;</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr id="tablaColocacionPrcHead">
-
-                                </tr>
-                            </thead>
-                            <tbody id="tablaColocacionPrcBody">
-                            </tbody>
-                        </table>
-                    </div>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaColocacionBody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="row" id="body">
                 <div class="col">
-                    <div class="tabla" id="colocacion">
-                        <h4>Cartera</h4>
-                        <table class="table table-bordered">
-                            <tbody id="tablaCarteraContable">
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered">
+                        <tbody id="tablaCarteraContable">
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col">
-                    <div class="tabla" id="colocacion">
-                        <h4>Cartera</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ACA</th>
-                                    <th>MA</th>
-                                </tr>
-                            </thead>
-                            <tbody id="VSBody">
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ACA</th>
+                                <th>MA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="VSBody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -199,63 +189,53 @@
 
     <div class="row" id="body">
         <div class="col">
-            <div class="tabla" id="colocacion">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr id="CarteraHead">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="8" class="tituloTabla">CARTERA POR BUCKETS</th>
+                    </tr>
+                    <tr id="CarteraHead">
 
-                        </tr>
-                    </thead>
-                    <tbody id="CarteerBody">
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody id="CarteerBody">
+                </tbody>
+            </table>
         </div>
         <div class="col">
-            <div class="tabla" id="colocacion">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr id="CarteraPctHead">
-
-                        </tr>
-                    </thead>
-                    <tbody id="CarteerPctBody">
-                    </tbody>
-                </table>
-            </div>
+            <canvas id="canvasCarteraBuckets" width="400" height="300"></canvas>
         </div>
     </div>
 
     <div class="row" id="body">
         <div class="col">
-            <div class="tabla" id="colocacion">
-                <h4>CARTERA OPERATIVA</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr id="CarteraOperativaHead">
-                            <th></th>
-                            <th>VIGENTE</th>
-                            <th>VENCIDA</th>
-                            <th>CASTIGO CONTABLE</th>
-                            <th>CASTIGO FISCAL</th>
-                            <th style="color: #fff; background-color: #212529;">TOTAL</th>
-                            <th>TOTAL</th>
-                            <th>%</th>
-                        </tr>
-                    </thead>
-                    <tbody id="CarteraOperativaBody">
-                    </tbody>
-                </table>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="8" class="tituloTabla">CARTERA OPERATIVA</th>
+                    </tr>
+                    <tr id="CarteraOperativaHead">
+                        <th></th>
+                        <th>VIGENTE</th>
+                        <th>VENCIDA</th>
+                        <th>CASTIGO CONTABLE</th>
+                        <th>CASTIGO FISCAL</th>
+                        <th style="color: #fff; background-color: #212529;">TOTAL</th>
+                        <th>TOTAL</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody id="CarteraOperativaBody">
+                </tbody>
+            </table>
         </div>
-    </div>
-
-    <div class="row" id="body">
+        <br>
         <div class="col">
-            <div class="tabla" id="colocacion">
-                <h4>CARTERA OPERATIVA POR COBRAR</h4>
                 <table class="table table-bordered">
                     <thead>
+                        <tr>
+                            <th colspan="8" class="tituloTabla">CARTERA OPERATIVA POR COBRAR</th>
+                        </tr>
                         <tr id="CarteraOperativaCobrarHead">
                             <th></th>
                             <th>VIGENTE</th>
@@ -271,37 +251,40 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+    </div>
+
+    <div class="row" id="body">
+        
     </div>
 
     <div class="row" id="body">
         <div class="col">
-            <div class="tabla" id="colocacion">
-                <h4>NEVER PAID</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr id="NeverPaidHead">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="4" class="tituloTabla">NEVER PAID</th>
+                    </tr>
+                    <tr id="NeverPaidHead">
 
-                        </tr>
-                    </thead>
-                    <tbody id="NeverPaidBody">
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody id="NeverPaidBody">
+                </tbody>
+            </table>
         </div>
         <div class="col">
-            <div class="tabla" id="colocacion">
-                <h4>NEVER PAID: CRÉDITOS</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr id="NeverPaidCredHead">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="4" class="tituloTabla">NEVER PAID: CRÉDITOS</th>
+                    </tr>
+                    <tr id="NeverPaidCredHead">
 
-                        </tr>
-                    </thead>
-                    <tbody id="NeverPaidCredBody">
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody id="NeverPaidCredBody">
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

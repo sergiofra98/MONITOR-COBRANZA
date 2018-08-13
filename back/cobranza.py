@@ -177,9 +177,9 @@ def general():
 		registro = []
 
 		registro.append(row[0])
-		registro.append('{:0,.2f}%'.format(100*(row[1]/totales_cartera[1])))
-		registro.append('{:0,.2f}%'.format(100*(row[2]/totales_cartera[2])))
-		registro.append('{:0,.2f}%'.format(100*(row[3]/totales_cartera[3])))
+		registro.append('{:0,.2f}%'.format(100*((row[1]*1.00)/totales_cartera[1])))
+		registro.append('{:0,.2f}%'.format(100*((row[2]*1.00)/totales_cartera[2])))
+		registro.append('{:0,.2f}%'.format(100*((row[3]*1.00)/totales_cartera[3])))
 
 		if i == 1:
 			if row[3]/totales_cartera[3]> row[2]/totales_cartera[2]:
@@ -433,7 +433,6 @@ def general():
 
 	return json.dumps(lista_retorno)
 
-
 @app.route(url_base+'/inactividad_atraso',methods=['GET']) 
 def inactividad_atraso():
 	division = request.args.get('division')
@@ -612,6 +611,32 @@ def inactividad_atraso_detalle():
 		detalle.append(data)
 
 	return json.dumps(detalle)
+
+@app.route(url_base+'/general_detalle',methods=['GET']) 
+def general_detalle():
+	tipo = request.args.get('tipo')
+	tiempo = request.args.get('tiempo')
+
+	
+	data = {
+		'fechaDisp': '09/03/2018', 
+		'credito': '222',
+		'corresponsal': '432',
+		'diasVencidos': 'e32',
+		'estatusContable': 'exito',
+		'estatusOperativo': 'no',
+		'saldo': '222',
+		'signoInt': 'Fecha de liquido',
+		'fechaUltimoPago': '03/03/2018'
+	}
+
+	detalle = []
+
+	for x in range(0, 5):
+		detalle.append(data)
+
+	return json.dumps(detalle)
+
 
 
 if __name__ == '__main__':	
