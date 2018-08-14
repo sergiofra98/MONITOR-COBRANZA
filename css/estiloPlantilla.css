@@ -1,7 +1,40 @@
-.margenAbajo{
-    border-bottom: #535353 3px solid !important;
-}
+
 
 .margen-izq{
     border-left: #535353 solid 4px !important;
+}
+
+.tablasCartera th:nth-of-type(5), 
+.tablasCartera td:nth-of-type(5){
+    border-left: #535353 solid 4px !important;
+}
+
+tbody tr:last-of-type{
+    background-color: #e2e2f1;
+    font-weight: bold;
+}
+
+table td{
+    text-align: right;
+}
+
+tr td:first-of-type{
+    text-align: left;
+}
+
+.tablaCarteraOperativa tr:nth-of-type(5){
+    border-bottom: #535353 3px solid !important;
+}
+
+td:nth-of-type(7), 
+td:nth-of-type(8), 
+td:nth-of-type(14), 
+td:nth-of-type(15){
+    font-size: 12px;
+}
+
+canvas{
+    height: 150px;
+    width: 100%;
+    float: left;
 }
