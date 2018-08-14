@@ -9,114 +9,67 @@ function getInactividadAtrazo() {
 
     $.getJSON(linkCobranza + "/inactividad_atraso", {},
         function (dataTablas) {
-            let append = "";
+            var append = "";
 
             $('.tituloTabla').append('<th colspan="13"> Inactividad y Atraso - ' + generarMesString() + '/' + ano + '</th>')
             let i = 0;
 
 
             for (i; i < dataTablas.datos.length; i++) {
-                switch (i) {
-                    case 0: {
-                        append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 1) + ')">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 2) + ')">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 3) + ')">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 4) + ')">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 5) + ')">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 6) + ')">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 7) + ')">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 8) + ')">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 9) + ')">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 10) + ')">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
-                        append += '<td class="num obscuro">' + dataTablas.datos[i].total + '</td></tr>'
-                        break;
-                    }
-                    case 1: {
-                        append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 1) + ')">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 2) + ')">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 3) + ')">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 4) + ')">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 5) + ')">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 6) + ')">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 7) + ')">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 8) + ')">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 9) + ')">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
-                        append += '<td class="verde"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 10) + ')">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
-                        append += '<td class="num obscuro">' + dataTablas.datos[i].total + '</td></tr>'
-                        break;
-                    }
-                    case 2: case 3: {
-                        append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 1) + ')">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 2) + ')">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 3) + ')">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 4) + ')">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 5) + ')">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 6) + ')">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 7) + ')">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 8) + ')">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 9) + ')">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 10) + ')">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
-                        append += '<td class="num obscuro">' + dataTablas.datos[i].total + '</td></tr>'
-                        break;
-                    }
-                    case 11: {
-                        append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 1) + ')">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 2) + ')">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 3) + ')">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 4) + ')">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 5) + ')">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 6) + ')">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 7) + ')">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 8) + ')">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 9) + ')">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
-                        append += '<td class="negro"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 10) + ')">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
-                        append += '<td class="num obscuro">' + dataTablas.datos[i].total + '</td></tr>'
-                        break;
-                    }
-                    case 12: {
-                        append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
-                        append += '<td><span class="num">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
-                        append += '<td class="num obscuro">' + dataTablas.datos[i].total + '</td></tr>'
-                        break;
-                    }
-                    default: {
-                        append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 1) + ')">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 2) + ')">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 3) + ')">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 4) + ')">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
-                        append += '<td class="amarillo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 5) + ')">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 6) + ')">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 7) + ')">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 8) + ')">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 9) + ')">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
-                        append += '<td class="rojo"><span class="num"><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 10) + ')">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
-                        append += '<td class="num obscuro">' + dataTablas.datos[i].total + '</td></tr>'
-                        break;
-                    }
+
+                if(i === 12){
+                    append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
+                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
+                    append += '<td>' + dataTablas.datos[i].total + '</td></tr>'
+                }
+                else{
+                    append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].actual + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_30 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_60 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_90 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_120 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_150 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_180 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_210 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_240 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_270 + '</button></td>'
+                    append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_mas_270 + '</button></td>'
+                    append += '<td>' + dataTablas.datos[i].total + '</td></tr>'    
                 }
             }
 
             $('#tablaAtraso').append(append)
+
+            append = ''
+
+            for (i = 0; i < dataTablas.datos.length; i++) {
+                append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].actual + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_30 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_60 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_90 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_120 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_150 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_180 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_210 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_240 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_270 + '</td>'
+                append += '<td>' + dataTablas.porcentajes[i].atraso_mas_270 + '</td>'
+                append += '<td>' + dataTablas.datos[i].total + '</td></tr>'
+            }
+
+            $('#tablaAtrasoPCT').append(append)
 
         })
         .done(function () {
