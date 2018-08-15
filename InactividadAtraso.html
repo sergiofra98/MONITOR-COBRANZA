@@ -71,35 +71,51 @@
         </div>
     </div>
 
-    <form onsubmit="getInactividadAtrazo()" class="form-group" id="consulta">
+    <form onsubmit="getColocacion()" class="form-group" id="consulta">
         <div class="row">
             <div class="col-sm">
                 <img class="imgMasNomina" src="img/logo_mas_nomina.jpg" alt="">
             </div>
             <div class="col-sm">
-                <h3>Inactividad y atraso</h3>
+                <h3>General</h3>
             </div>
             <div class="col-sm">
-                <label for="mes">Fecha: </label>
+                <div>
+                    <label for="mes">Periodo: </label>
+                </div>
                 <select required name="inputMes" id="inputMes" class="form-control">
-                    <option disabled hidden selected value="">Elija una opción</option>
-                    <option value="201801">2018/01</option>
-                    <option value="201802">2018/02</option>
-                    <option value="201803">2018/03</option>
-                    <option value="201804">2018/04</option>
-                    <option value="201805">2018/05</option>
-                    <option value="201806">2018/06</option>
-                    <option value="201807">2018/07</option>
-                    <option value="201808">2018/08</option>
-                    <option value="201809">2018/09</option>
-                    <option value="201810">2018/10</option>
-                    <option value="201811">2018/11</option>
-                    <option value="201812">2018/12</option>
+
+                </select>
+                <select required name="inputAno" id="inputAno" class="form-control">
+
                 </select>
             </div>
-
-
-            <button type="button" id="btnBuscar" class="btn btn-primary" onclick="getInactividadAtrazo()">Consultar</button>
+            <div class="col-sm">
+                <label for="division">Buscar Por: </label>
+                <select required name="inputDivision" id="inputDivision" class="form-control">
+                    <option value="ANALISTA">Analista</option>
+                    <option value="CORRESPONSAL">Corresponsal</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <label for="mes">Nombre: </label>
+                <select required name="inputMes" id="inputNombre" class="form-control">
+                    <option value="201801">TODAS</option>
+                    <option value="201802">GDF</option>
+                    <option value="201802">SEF CHIAPAS</option>
+                    <option value="201802">IMSS PENSIONADOS</option>
+                    <option value="201802">IMSS JUBILADOS</option>
+                    <option value="201802">PEMEX</option>
+                    <option value="201802">ZULMA CONTRERAS</option>
+                    <option value="201802">CRISTHIAN TORRES</option>
+                    <option value="201802">LUIS SOTO</option>
+                    <option value="201802">ADRIANA RODRIGUEZ</option>
+                    <option value="201802">ARTURO BLANCO</option>
+                    <option value="201802">DAYANA SAUCEDO</option>
+                    <option value="201802">HILARIO ANDRES</option>
+                </select>
+            </div>
+            <button type="button" id="btnBuscar" class="btn btn-primary" onclick="getColocacion()">Consultar</button>
         </div>
     </form>
 
@@ -115,7 +131,7 @@
     </div>
 
     <div class="row" id="body">
-        <table class="table table-bordered"> 
+        <table class="table table-bordered">
             <thead>
                 <tr class="tituloTabla">
                 </tr>
@@ -163,7 +179,7 @@
                     <th style="width: 100px;">TOTAL</th>
                 </tr>
                 <tr>
-                    <th colspan="13">$</th>
+                    <th colspan="13">%</th>
                 </tr>
             </thead>
             <tbody id="tablaAtrasoPCT" class="tablaAtrasoInactividad">

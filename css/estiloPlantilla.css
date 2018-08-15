@@ -14,6 +14,19 @@ tbody tr:last-of-type{
     font-weight: bold;
 }
 
+.tablitas{
+    margin-bottom: 24px !important;
+}
+
+.tablaACA{
+    margin-top: 84px;
+}
+
+.tablitas tr td{
+    background-color: white;
+    font-weight: normal;
+}
+
 table td{
     text-align: right;
 }

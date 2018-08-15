@@ -164,3 +164,8 @@ canvas{
     text-align: inherit !important;
     text-decoration: underline;
 }
+
+#inputMes, #inputAno{
+    width: 49%;
+    float: left;
+}

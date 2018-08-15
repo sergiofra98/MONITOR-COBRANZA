@@ -19,17 +19,16 @@ function getInactividadAtrazo() {
 
                 if(i === 12){
                     append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].actual + '</button></span><span class="prc">' + dataTablas.porcentajes[i].actual + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_30 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_30 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_60 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_60 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_90 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_90 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_120 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_120 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_150 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_150 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_180 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_180 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_210 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_210 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_240 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_240 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_270 + '</span></td>'
-                    append += '<td><span class="num">' + dataTablas.datos[i].atraso_mas_270 + '</button></span><span class="prc">' + dataTablas.porcentajes[i].atraso_mas_270 + '</span></td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_30 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_60 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_90 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_120 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_150 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_180 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_210 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_240 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_270 + '</td>'
+                    append += '<td>' + dataTablas.datos[i].atraso_mas_270 + '</td>'
                     append += '<td>' + dataTablas.datos[i].total + '</td></tr>'
                 }
                 else{

@@ -59,7 +59,7 @@ function getCobranza() {
             $('#tablaColocacionBody').append(append)
 
             append = "";
-            append += '<tr>'
+            append += '<tr><th>Cartera Contable</th>'
 
             for (i = 0; i < 3; i++) {
                 append += '<td>' + dataTablas.cartera_datos_vigente[i] + '</td>'
@@ -72,9 +72,21 @@ function getCobranza() {
             //INSERTAR ICV
             append = ''
 
+            append += '<tr><th></th>'
+            for (j = 1; j < 4; j++) {
+                append += '<th>' + dataTablas.icv[0][j] + '</th>'
+            }
+            append += '</tr>'
+
+
+            $('#tablaICVHead').append(append)
+            $('#tablaCarteraContableHead').append(append);
+
+            append = ''
+
             for (i = 1; i < 3; i++) {
                 append += '<tr>'
-                for (j = 0; j < 3; j++) {
+                for (j = 0; j < 4; j++) {
                     append += '<td>' + dataTablas.icv[i][j] + '</td>'
                 }
                 append += '</tr>'
