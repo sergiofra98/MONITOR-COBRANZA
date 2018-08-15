@@ -27,7 +27,6 @@ function getStringMes(i) {
         case 0:
             {
                 return "ENE";
-
             }
         case 1:
             {
