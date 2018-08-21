@@ -144,7 +144,6 @@ function getCobranza() {
 
             for (i = 0; i < 12; i++) {
                 append += "<tr>";
-                j = 1;
 
                 if (i === 11) {
                     append += '<td>' + dataTablas.cartera_datos_operativa[i].nombre + '</td>'
@@ -196,8 +195,21 @@ function getCobranza() {
                     }
                 }
 
+                append += "</tr>";
+            }
+
+            $('#CarteraOperativaBody').append(append)
+
+
+            //CARTERA OPERATIVA
+            append = ""
+            
+            for (i = 0; i < 12; i++) {
+                append += "<tr>";
+
 
                 if (i === 11) {
+                    append += '<td>' + dataTablas.cartera_datos_operativa[i].nombre + '</td>'
                     append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].VIGENTE + '</td>'
                     append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].VENCIDA + '</td>'
                     append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_CONTABLE + '</td>'
@@ -205,6 +217,7 @@ function getCobranza() {
                     append += '<td>' + dataTablas.cartera_datos_operativa_cobrar[i].TOTAL + '</td>'
                 }
                 else {
+                    append += '<td>' + dataTablas.cartera_datos_operativa[i].nombre + '</td>'
                     append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(0, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].VIGENTE + '</button></td>'
                     append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(1, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].VENCIDA + '</button></td>'
                     append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(2, i) + ')">' + dataTablas.cartera_datos_operativa_cobrar[i].CASTIGO_CONTABLE + '</button></td>'
@@ -249,7 +262,7 @@ function getCobranza() {
                 append += "</tr>";
             }
 
-            $('#CarteraOperativaBody').append(append)
+            $('#CarteraOperativaCobrarBody').append(append)
 
             //NEVER PAID
 
@@ -390,7 +403,7 @@ function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos) {
                 },
                 {
                     label: textos[2],
-                    backgroundColor: ["#f8f879", "#f8f879", "#f8f879"],
+                    backgroundColor: ["#ff9000", "#ff9000", "#ff9000"],
                     data: [mes1[1], mes2[1], mes3[1]],
                     stack: 4
                 },
@@ -420,6 +433,24 @@ function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos) {
                         return tooltipItem.yLabel + '%';
                     },
                 }
+            },
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.4
+                }],
+                yAxes: [
+                    {
+                        ticks: {
+                            callback: function (label) {
+                                return label + '%';
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Porcentaje'
+                        }
+                    }
+                ]
             }
         }
     });

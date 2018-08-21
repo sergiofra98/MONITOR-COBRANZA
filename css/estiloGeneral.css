@@ -1,3 +1,18 @@
+body{
+    background-color: white;
+    color: #2d2026 !important;
+    width: calc(100% - 68px);
+    margin: auto;
+    padding: 24px 0;
+    min-width: 1024px;
+}
+
+.imgMasNomina{
+    width: 310px;
+    margin: auto;
+    display: block;
+}
+
 @media only screen and (min-width: 992px) {
     .imgMasNomina{
         width: 210px;
@@ -20,23 +35,6 @@
         margin: auto;
         display: block;
     }
-}
-
-
-body{
-    background-color: white;
-    color: #2d2026 !important;
-    width: calc(100% - 68px);
-    margin: auto;
-    padding: 24px 0;
-    min-width: 1024px;
-}
-
-
-.imgMasNomina{
-    width: 310px;
-    margin: auto;
-    display: block;
 }
 
 .table{
@@ -69,6 +67,7 @@ body{
 thead{
     background-color: #007bff;
     color: white;
+    font-size: 14;
 }
 
 .form-group .row{
@@ -104,13 +103,6 @@ thead{
     margin-left: 20px;
 }
 
-.obscuro{
-    background-color: #e2e2f1;
-    font-weight: bold;
-}
-
-
-
 .btn-primary{
     height: 55px;
     margin: 12px;
@@ -120,6 +112,7 @@ thead{
 .tituloTabla{
     background-color: #535353; 
     color: white;
+    font-size: 14;
 }
 
 .row{
@@ -156,8 +149,6 @@ canvas{
     border: none;
 }
 
-
-
 .btn-link, .btn-link:hover, .btn-link:active, .btn-link:visited {
     color: inherit !important;
     font-size: inherit !important;
@@ -168,4 +159,10 @@ canvas{
 #inputMes, #inputAno{
     width: 49%;
     float: left;
+}
+
+tbody tr:last-of-type{
+    background-color: #e2e2f1;
+    font-weight: bold;
+    font-size: 14;
 }

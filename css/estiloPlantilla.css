@@ -9,17 +9,26 @@
     border-left: #535353 solid 4px !important;
 }
 
-tbody tr:last-of-type{
-    background-color: #e2e2f1;
-    font-weight: bold;
+.tablaCarteraOperativa{
+    width: 80%;
+    margin-left: 1%;
+}
+
+.tablaCarteraOperativa:last-of-type{
+    margin-top: 24px;
+}
+
+.vsVigente{
+    width: 200px;
+    margin-left: 12px;
 }
 
 .tablitas{
     margin-bottom: 24px !important;
 }
 
-.tablaACA{
-    margin-top: 84px;
+#carteraoperativa *{
+    float: left;
 }
 
 .tablitas tr td{

@@ -54,7 +54,7 @@
                                     <th>Estatus contable</th>
                                     <th>Estatus operativo</th>
                                     <th>Saldo</th>
-                                    <th>?</th>
+                                    <th>Comentarios</th>
                                     <th>Fecha último pago</th>
                                 </tr>
                             </thead>
@@ -211,10 +211,43 @@
 
     <div class="row" id="body">
         <div class="col">
+            <div id="carteraoperativa">
+                <table class="table table-bordered tablaCarteraOperativa">
+                    <thead>
+                        <tr>
+                            <th colspan="8" class="tituloTabla">CARTERA OPERATIVA</th>
+                        </tr>
+                        <tr id="CarteraOperativaHead">
+                            <th></th>
+                            <th>VIGENTE</th>
+                            <th>VENCIDA</th>
+                            <th>CASTIGO CONTABLE</th>
+                            <th>CASTIGO FISCAL</th>
+                            <th style="color: #fff; background-color: #212529;">TOTAL</th>
+                            <th>TOTAL</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="CarteraOperativaBody">
+                    </tbody>
+                </table>
+                <table class="table table-bordered vsVigente">
+                    <thead>
+                        <tr class="tituloTabla">
+                            <th>VS Cartera Vigente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>93.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <table class="table table-bordered tablaCarteraOperativa">
                 <thead>
                     <tr>
-                        <th colspan="8" class="tituloTabla">CARTERA OPERATIVA</th>
                         <th colspan="8" class="tituloTabla">CARTERA OPERATIVA POR COBRAR</th>
                     </tr>
                     <tr id="CarteraOperativaHead">
@@ -226,16 +259,9 @@
                         <th style="color: #fff; background-color: #212529;">TOTAL</th>
                         <th>TOTAL</th>
                         <th>%</th>
-                        <th>VIGENTE</th>
-                        <th>VENCIDA</th>
-                        <th>CASTIGO CONTABLE</th>
-                        <th>CASTIGO FISCAL</th>
-                        <th style="color: #fff; background-color: #212529;">TOTAL</th>
-                        <th>TOTAL</th>
-                        <th>%</th>
                     </tr>
                 </thead>
-                <tbody id="CarteraOperativaBody">
+                <tbody id="CarteraOperativaCobrarBody">
                 </tbody>
             </table>
         </div>

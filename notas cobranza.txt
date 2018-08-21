@@ -1,0 +1,13 @@
+COLOCACION
+-corregir formula total de primera tabla
+-titulo porcentaje costo de ventas
+-tabla en eje y %
+
+MONITOR COBRANZA
+-arreglar tamaño de texto de tablas
+-totales al mismo 
+-graficas mas delgadas
+-amarillo a naranja
+-modal comentario ?
+-separar tablas
+-quitar meses en tablas grandes

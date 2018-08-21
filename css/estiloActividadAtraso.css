@@ -44,3 +44,17 @@ tbody tr td:first-of-type{
     background-color: #e2e2f1 !important;
     font-weight: bold;
 }
+
+.tablaAtrasoInactividad tr td:last-of-type{
+    font-size: 14;
+}
+
+.porcentajes{
+    max-width: 1300px;
+    margin: auto;
+}
+
+.numeros{
+    max-width: 1800px;
+    margin:auto;
+}

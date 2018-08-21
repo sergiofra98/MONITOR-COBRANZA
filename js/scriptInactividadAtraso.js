@@ -11,7 +11,6 @@ function getInactividadAtrazo() {
         function (dataTablas) {
             var append = "";
 
-            $('.tituloTabla').append('<th colspan="13"> Inactividad y Atraso - ' + generarMesString() + '/' + ano + '</th>')
             let i = 0;
 
 
@@ -19,6 +18,7 @@ function getInactividadAtrazo() {
 
                 if(i === 12){
                     append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
+                    append += '<td>' + dataTablas.datos[i].actual + '</td>'
                     append += '<td>' + dataTablas.datos[i].atraso_30 + '</td>'
                     append += '<td>' + dataTablas.datos[i].atraso_60 + '</td>'
                     append += '<td>' + dataTablas.datos[i].atraso_90 + '</td>'
