@@ -591,9 +591,43 @@ def inactividad_atraso():
 	lista_resultado.append(totales)
 	lista_resultado_pct.append(totales_pct)
 
+	lista_resumen = [
+		{
+			'porcentaje': '89.91%',
+			'capital': '486,666,592',
+			'intereses': '604,565,915',
+			'iva': '96,730,546'
+		},
+		{
+			'porcentaje': '1.48%',
+			'capital': '8,544,426',
+			'intereses': '10,641,719',
+			'iva': '1,702,675'
+		},
+		{
+			'porcentaje': '4.71%',
+			'capital': '27,304,516',
+			'intereses': '10,641,719',
+			'iva': '5,427,084'
+		},
+		{
+			'porcentaje': '9.91%',
+			'capital': '57,462,566',
+			'intereses': '71,383,261',
+			'iva': '11,421,322'
+		},
+		{
+			'porcentaje': '100%',
+			'capital': '580,000,000',
+			'intereses': '720,510,173',
+			'iva': '115,281,628'
+		},
+	]
+
 	lista_retorno = {}
 	lista_retorno['datos'] = lista_resultado
 	lista_retorno['porcentajes'] = lista_resultado_pct
+	lista_retorno['resumen'] = lista_resumen
 
 	return json.dumps(lista_retorno)
 

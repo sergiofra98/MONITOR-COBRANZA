@@ -70,6 +70,21 @@ function getInactividadAtrazo() {
 
             $('#tablaAtrasoPCT').append(append)
 
+            console.log(dataTablas)
+            append = '';
+
+            for(i = 0; i< 5; i++){
+                append+= '<tr>'
+                append+= '<td>' + dataTablas.resumen[i].porcentaje + '</td>'
+                append+= '<td>' + dataTablas.resumen[i].capital + '</td>'
+                append+= '<td>' + dataTablas.resumen[i].intereses + '</td>'
+                append+= '<td>' + dataTablas.resumen[i].iva + '</td>'
+                append+= '</tr>'
+            }
+
+            $('#tablaResumen').append(append)
+
+
         })
         .done(function () {
             $('#body, #titulo').css("display", "flex");
