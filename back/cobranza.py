@@ -65,9 +65,9 @@ def general():
 		registro = []
 
 		registro.append(row[0])
-		registro.append('{:0,.2f}'.format(row[1]))
-		registro.append('{:0,.2f}'.format(row[2]))
-		registro.append('{:0,.2f}'.format(row[3]))
+		registro.append('{:0,.0f}'.format(row[1]))
+		registro.append('{:0,.0f}'.format(row[2]))
+		registro.append('{:0,.0f}'.format(row[3]))
 
 		totales_cartera[1] += row[1]
 		totales_cartera[2] += row[2]
@@ -103,31 +103,31 @@ def general():
 
 	aux_icv = []
 	aux_icv.append('ICV' )
-	aux_icv.append('{:0,.2f}%'.format(100*(lista_cartera[1][1] / lista_resultado_cartera_vigente[0])))
-	aux_icv.append('{:0,.2f}%'.format(100*(lista_cartera[1][2] / lista_resultado_cartera_vigente[1])))
-	aux_icv.append('{:0,.2f}%'.format(100*(lista_cartera[1][3] / lista_resultado_cartera_vigente[2])))
+	aux_icv.append('{:0,.2f}%'.format(100*(lista_cartera[1][1]*1.00 / lista_resultado_cartera_vigente[0])))
+	aux_icv.append('{:0,.2f}%'.format(100*(lista_cartera[1][2]*1.00 / lista_resultado_cartera_vigente[1])))
+	aux_icv.append('{:0,.2f}%'.format(100*(lista_cartera[1][3]*1.00 / lista_resultado_cartera_vigente[2])))
 	lista_resultado_cartera_icv.append(aux_icv)
 
 	aux_icv = []
 	aux_icv.append('ICV Operativo' )
-	aux_icv.append('{:0,.2f}%'.format(100*((lista_cartera[1][1] + lista_cartera[2][1] + lista_cartera[3][1])/totales_cartera[1])))
-	aux_icv.append('{:0,.2f}%'.format(100*((lista_cartera[1][2] + lista_cartera[2][2] + lista_cartera[3][2])/totales_cartera[2])))
-	aux_icv.append('{:0,.2f}%'.format(100*((lista_cartera[1][3] + lista_cartera[2][3] + lista_cartera[3][3])/totales_cartera[3])))
+	aux_icv.append('{:0,.2f}%'.format(100*((lista_cartera[1][1] + lista_cartera[2][1] + lista_cartera[3][1])*1.00/totales_cartera[1])))
+	aux_icv.append('{:0,.2f}%'.format(100*((lista_cartera[1][2] + lista_cartera[2][2] + lista_cartera[3][2])*1.00/totales_cartera[2])))
+	aux_icv.append('{:0,.2f}%'.format(100*((lista_cartera[1][3] + lista_cartera[2][3] + lista_cartera[3][3])*1.00/totales_cartera[3])))
 	lista_resultado_cartera_icv.append(aux_icv)
 
 	aux_pcts = {}
-	aux_pcts['ACA'] = '{:0,.2f}%'.format(100*((lista_resultado_cartera_vigente[2] / lista_resultado_cartera_vigente[0]) - 1))
-	aux_pcts['MA'] = '{:0,.2f}%'.format(100*((lista_resultado_cartera_vigente[2] / lista_resultado_cartera_vigente[1]) - 1))
+	aux_pcts['ACA'] = '{:0,.2f}%'.format(100*((lista_resultado_cartera_vigente[2]*1.00 / lista_resultado_cartera_vigente[0]) - 1))
+	aux_pcts['MA'] = '{:0,.2f}%'.format(100*((lista_resultado_cartera_vigente[2]*1.00 / lista_resultado_cartera_vigente[1]) - 1))
 
 	
-	totales_cartera[1] = '{:0,.2f}'.format(totales_cartera[1])
-	totales_cartera[2] = '{:0,.2f}'.format(totales_cartera[2])
-	totales_cartera[3] = '{:0,.2f}'.format(totales_cartera[3])
+	totales_cartera[1] = '{:0,.0f}'.format(totales_cartera[1])
+	totales_cartera[2] = '{:0,.0f}'.format(totales_cartera[2])
+	totales_cartera[3] = '{:0,.0f}'.format(totales_cartera[3])
 	lista_resultado_cartera.append(totales_cartera)
 
-	lista_resultado_cartera_vigente[0] = '{:0,.2f}'.format(lista_resultado_cartera_vigente[0])
-	lista_resultado_cartera_vigente[1] = '{:0,.2f}'.format(lista_resultado_cartera_vigente[1])
-	lista_resultado_cartera_vigente[2] = '{:0,.2f}'.format(lista_resultado_cartera_vigente[2])
+	lista_resultado_cartera_vigente[0] = '{:0,.0f}'.format(lista_resultado_cartera_vigente[0])
+	lista_resultado_cartera_vigente[1] = '{:0,.0f}'.format(lista_resultado_cartera_vigente[1])
+	lista_resultado_cartera_vigente[2] = '{:0,.0f}'.format(lista_resultado_cartera_vigente[2])
 
 	lista_retorno['cartera_datos'] = lista_resultado_cartera
 	lista_retorno['cartera_datos_pct'] = lista_resultado_cartera_pct
@@ -162,9 +162,9 @@ def general():
 	for i, row in enumerate(lista_cartera, 1):
 		registro = []
 		registro.append(row[0])
-		registro.append('{:0,.2f}'.format(row[1]))
-		registro.append('{:0,.2f}'.format(row[2]))
-		registro.append('{:0,.2f}'.format(row[3]))
+		registro.append('{:0,.0f}'.format(row[1]))
+		registro.append('{:0,.0f}'.format(row[2]))
+		registro.append('{:0,.0f}'.format(row[3]))
 
 		totales_cartera[1] += row[1]
 		totales_cartera[2] += row[2]
@@ -193,9 +193,9 @@ def general():
 				registro.append('rojo')
 		lista_resultado_cartera_pct.append(registro)
 
-	totales_cartera[1] = '{:0,.2f}'.format(totales_cartera[1])
-	totales_cartera[2] = '{:0,.2f}'.format(totales_cartera[2])
-	totales_cartera[3]= '{:0,.2f}'.format(totales_cartera[3])
+	totales_cartera[1] = '{:0,.0f}'.format(totales_cartera[1])
+	totales_cartera[2] = '{:0,.0f}'.format(totales_cartera[2])
+	totales_cartera[3]= '{:0,.0f}'.format(totales_cartera[3])
 	lista_resultado_cartera.append(totales_cartera)
 
 	lista_retorno['cartera_datos_bucket'] = lista_resultado_cartera
@@ -213,9 +213,9 @@ def general():
 					['30-59%', 6004 , 1705 , 2165 , 2271],
 					['1-29%', 1819 , 1237 , 1984 , 4767],
 					['POR INSTALAR', 44079 , 70 , 66 , 65],
-					['CERO', 13886 , 3418 , 7054 , 15266],
 					['BAJAS en recuperacion', 5283 , 3525 , 8540 , 56462],
 					['BAJAS', 1321 , 881 , 2135 , 14115],
+					['CERO', 13886 , 3418 , 7054 , 15266],
 					['DEFUNCIONES', 982 , 583 , 567 , 1239],
 					['FRAUDES', 0 , 120 , 32 , 710]
 			]
@@ -234,11 +234,11 @@ def general():
 		registro = {}
 		registro['id'] = i
 		registro['nombre'] = row[0]
-		registro['VIGENTE'] = '{:0,.2f}'.format(row[1])
-		registro['VENCIDA'] = '{:0,.2f}'.format(row[2])
-		registro['CASTIGO_CONTABLE'] = '{:0,.2f}'.format(row[3])
-		registro['CASTIGO_FISCAL'] = '{:0,.2f}'.format(row[4])
-		registro['TOTAL'] = '{:0,.2f}'.format(row[1] + row[2] + row[3] + row[4])
+		registro['VIGENTE'] = '{:0,.0f}'.format(row[1])
+		registro['VENCIDA'] = '{:0,.0f}'.format(row[2])
+		registro['CASTIGO_CONTABLE'] = '{:0,.0f}'.format(row[3])
+		registro['CASTIGO_FISCAL'] = '{:0,.0f}'.format(row[4])
+		registro['TOTAL'] = '{:0,.0f}'.format(row[1] + row[2] + row[3] + row[4])
 		
 		totales_cartera['VIGENTE'] += row[1]
 		totales_cartera['VENCIDA'] += row[2]
@@ -262,17 +262,17 @@ def general():
 	lista_resultado_cartera_totales['bajas_pct'] = '{:0,.2f}%'.format((lista_resultado_cartera_totales['bajas']/totales_cartera['TOTAL'])*100)
 	lista_resultado_cartera_totales['fraudes_defunciones_pct'] = '{:0,.2f}%'.format((lista_resultado_cartera_totales['fraudes_defunciones']/totales_cartera['TOTAL'])*100)
 
-	lista_resultado_cartera_totales['pcts'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['pcts'])
-	lista_resultado_cartera_totales['instalar'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['instalar'])
-	lista_resultado_cartera_totales['cero'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['cero'])
-	lista_resultado_cartera_totales['bajas'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['bajas'])
-	lista_resultado_cartera_totales['fraudes_defunciones'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['fraudes_defunciones'])
+	lista_resultado_cartera_totales['pcts'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['pcts'])
+	lista_resultado_cartera_totales['instalar'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['instalar'])
+	lista_resultado_cartera_totales['cero'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['cero'])
+	lista_resultado_cartera_totales['bajas'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['bajas'])
+	lista_resultado_cartera_totales['fraudes_defunciones'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['fraudes_defunciones'])
 
-	totales_cartera['VIGENTE'] = '{:0,.2f}'.format(totales_cartera['VIGENTE'])
-	totales_cartera['VENCIDA'] = '{:0,.2f}'.format(totales_cartera['VENCIDA'])
-	totales_cartera['CASTIGO_CONTABLE'] = '{:0,.2f}'.format(totales_cartera['CASTIGO_CONTABLE'])
-	totales_cartera['CASTIGO_FISCAL'] = '{:0,.2f}'.format(totales_cartera['CASTIGO_FISCAL'])
-	totales_cartera['TOTAL'] = '{:0,.2f}'.format(totales_cartera['TOTAL'])
+	totales_cartera['VIGENTE'] = '{:0,.0f}'.format(totales_cartera['VIGENTE'])
+	totales_cartera['VENCIDA'] = '{:0,.0f}'.format(totales_cartera['VENCIDA'])
+	totales_cartera['CASTIGO_CONTABLE'] = '{:0,.0f}'.format(totales_cartera['CASTIGO_CONTABLE'])
+	totales_cartera['CASTIGO_FISCAL'] = '{:0,.0f}'.format(totales_cartera['CASTIGO_FISCAL'])
+	totales_cartera['TOTAL'] = '{:0,.0f}'.format(totales_cartera['TOTAL'])
 	lista_resultado_cartera.append(totales_cartera)
 
 	lista_retorno['cartera_datos_operativa'] = lista_resultado_cartera
@@ -297,11 +297,11 @@ def general():
 		registro = {}
 		registro['id'] = i
 		registro['nombre'] = row[0]
-		registro['VIGENTE'] = '{:0,.2f}'.format(row[1]*1.4)
-		registro['VENCIDA'] = '{:0,.2f}'.format(row[2]*1.4)
-		registro['CASTIGO_CONTABLE'] = '{:0,.2f}'.format(row[3]*1.4)
-		registro['CASTIGO_FISCAL'] = '{:0,.2f}'.format(row[4]*1.4)
-		registro['TOTAL'] = '{:0,.2f}'.format((row[1] + row[2] + row[3] + row[4])*1.4)
+		registro['VIGENTE'] = '{:0,.0f}'.format(row[1]*1.4)
+		registro['VENCIDA'] = '{:0,.0f}'.format(row[2]*1.4)
+		registro['CASTIGO_CONTABLE'] = '{:0,.0f}'.format(row[3]*1.4)
+		registro['CASTIGO_FISCAL'] = '{:0,.0f}'.format(row[4]*1.4)
+		registro['TOTAL'] = '{:0,.0f}'.format((row[1] + row[2] + row[3] + row[4])*1.4)
 		
 		totales_cartera['VIGENTE'] += row[1]*1.4
 		totales_cartera['VENCIDA'] += row[2]*1.4
@@ -325,17 +325,17 @@ def general():
 	lista_resultado_cartera_totales['bajas_pct'] = '{:0,.2f}%'.format((lista_resultado_cartera_totales['bajas']/totales_cartera['TOTAL'])*100)
 	lista_resultado_cartera_totales['fraudes_defunciones_pct'] = '{:0,.2f}%'.format((lista_resultado_cartera_totales['fraudes_defunciones']/totales_cartera['TOTAL'])*100)
 
-	lista_resultado_cartera_totales['pcts'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['pcts'])
-	lista_resultado_cartera_totales['instalar'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['instalar'])
-	lista_resultado_cartera_totales['cero'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['cero'])
-	lista_resultado_cartera_totales['bajas'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['bajas'])
-	lista_resultado_cartera_totales['fraudes_defunciones'] = '{:0,.2f}'.format(lista_resultado_cartera_totales['fraudes_defunciones'])
+	lista_resultado_cartera_totales['pcts'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['pcts'])
+	lista_resultado_cartera_totales['instalar'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['instalar'])
+	lista_resultado_cartera_totales['cero'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['cero'])
+	lista_resultado_cartera_totales['bajas'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['bajas'])
+	lista_resultado_cartera_totales['fraudes_defunciones'] = '{:0,.0f}'.format(lista_resultado_cartera_totales['fraudes_defunciones'])
 
-	totales_cartera['VIGENTE'] = '{:0,.2f}'.format(totales_cartera['VIGENTE'])
-	totales_cartera['VENCIDA'] = '{:0,.2f}'.format(totales_cartera['VENCIDA'])
-	totales_cartera['CASTIGO_CONTABLE'] = '{:0,.2f}'.format(totales_cartera['CASTIGO_CONTABLE'])
-	totales_cartera['CASTIGO_FISCAL'] = '{:0,.2f}'.format(totales_cartera['CASTIGO_FISCAL'])
-	totales_cartera['TOTAL'] = '{:0,.2f}'.format(totales_cartera['TOTAL'])
+	totales_cartera['VIGENTE'] = '{:0,.0f}'.format(totales_cartera['VIGENTE'])
+	totales_cartera['VENCIDA'] = '{:0,.0f}'.format(totales_cartera['VENCIDA'])
+	totales_cartera['CASTIGO_CONTABLE'] = '{:0,.0f}'.format(totales_cartera['CASTIGO_CONTABLE'])
+	totales_cartera['CASTIGO_FISCAL'] = '{:0,.0f}'.format(totales_cartera['CASTIGO_FISCAL'])
+	totales_cartera['TOTAL'] = '{:0,.0f}'.format(totales_cartera['TOTAL'])
 	lista_resultado_cartera.append(totales_cartera)
 
 	lista_retorno['cartera_datos_operativa_cobrar'] = lista_resultado_cartera
@@ -367,9 +367,9 @@ def general():
 	for i, row in enumerate(lista_cartera, 1):
 		registro = []
 		registro.append(row[0])
-		registro.append('{:0,.2f}'.format(row[1]))
-		registro.append('{:0,.2f}'.format(row[2]))
-		registro.append('{:0,.2f}'.format(row[3]))
+		registro.append('{:0,.0f}'.format(row[1]))
+		registro.append('{:0,.0f}'.format(row[2]))
+		registro.append('{:0,.0f}'.format(row[3]))
 
 		if not i == 1:
 			totales_cartera[1] += row[1]
@@ -377,9 +377,9 @@ def general():
 			totales_cartera[3]+= row[3]
 		lista_resultado_cartera.append(registro)
 
-	totales_cartera[1] = '{:0,.2f}'.format(totales_cartera[1])
-	totales_cartera[2] = '{:0,.2f}'.format(totales_cartera[2])
-	totales_cartera[3]= '{:0,.2f}'.format(totales_cartera[3])
+	totales_cartera[1] = '{:0,.0f}'.format(totales_cartera[1])
+	totales_cartera[2] = '{:0,.0f}'.format(totales_cartera[2])
+	totales_cartera[3]= '{:0,.0f}'.format(totales_cartera[3])
 	lista_resultado_cartera.append(totales_cartera)
 
 	lista_retorno['cartera_datos_never_paid'] = lista_resultado_cartera
@@ -413,9 +413,9 @@ def general():
 		registro = []
 
 		registro.append(row[0])
-		registro.append('{:0,.2f}'.format(row[1]))
-		registro.append('{:0,.2f}'.format(row[2]))
-		registro.append('{:0,.2f}'.format(row[3]))
+		registro.append('{:0,.0f}'.format(row[1]))
+		registro.append('{:0,.0f}'.format(row[2]))
+		registro.append('{:0,.0f}'.format(row[3]))
 
 		if not i == 1:
 			totales_cartera[1] += row[1]
@@ -423,12 +423,22 @@ def general():
 			totales_cartera[3]+= row[3]
 		lista_resultado_cartera.append(registro)
 
-	totales_cartera[1] = '{:0,.2f}'.format(totales_cartera[1])
-	totales_cartera[2] = '{:0,.2f}'.format(totales_cartera[2])
-	totales_cartera[3]= '{:0,.2f}'.format(totales_cartera[3])
+	totales_cartera[1] = '{:0,.0f}'.format(totales_cartera[1])
+	totales_cartera[2] = '{:0,.0f}'.format(totales_cartera[2])
+	totales_cartera[3]= '{:0,.0f}'.format(totales_cartera[3])
 	lista_resultado_cartera.append(totales_cartera)
 
 	lista_retorno['cartera_datos_never_paid_creditos'] = lista_resultado_cartera
+
+	lista_cartera=[
+					['', 'ABR17' ,'MAR18' ,'ABR18'],
+					['EPRC Inicial', '16,370' ,'11,606' ,'12,775'],
+					['EPRC Final', '19,957' ,'12,775' ,'11,705' ],
+					['Castigos', '3,624' ,'4,359' ,'4,328'  ],
+					['EPRC (Resultados)','7,212' ,'5,528' ,'3,257' , ]
+			]
+
+	lista_retorno['estimacion_preventiva'] = lista_cartera
 	#END CARTERA NEVER PAID CREDITOS
 
 	return json.dumps(lista_retorno)

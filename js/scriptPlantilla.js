@@ -9,8 +9,15 @@ $(function () {
 var cantidadEnum = ['cien', 'noventa', 'sesenta', 'treinta', 'uno', 'porInstalar', 'cero', 'bajasRecuperacion', 'bajas', 'defunciones', 'fraudes'];
 var tipoEnum = ['vigente', 'vencida', 'castigoContable', 'castigoFiscal'];
 
+var mesEnum = ['mes01', 'mes02', 'mes03'];
+var anioEnum = ['0', '1', '30', '60', '90', '120', '150', '180', '365']
+
 function generarStringDetalle(i, j) {
     return "'" + tipoEnum[i] + "' , '" + cantidadEnum[j] + "'"
+}
+
+function generarStringDetalleNeverPaid(i, j) {
+    return "'" + mesEnum[i] + "' , '" + anioEnum[j] + "'"
 }
 
 function getCobranza() {
@@ -41,16 +48,16 @@ function getCobranza() {
                 }
 
                 if (i === 5) {
-                    append += '<td>100%</td><td>100%</td><td>100%</td></tr>';
+                    append += '<td class="pct">100%</td><td class="pct"> 100%</td><td class="pct">100%</td></tr>';
                     break;
                 }
 
                 for (j = 1; j < 5; j++) {
                     if (j < 4) {
-                        append += '<td>' + dataTablas.cartera_datos_pct[i][j] + '</td>'
+                        append += '<td class="pct">' + dataTablas.cartera_datos_pct[i][j] + '</td>'
                     }
                     else {
-                        append += '<td class="' + dataTablas.cartera_datos_pct[i][j] + '"></td>'
+                        append += '<td class="pct ' + dataTablas.cartera_datos_pct[i][j] + '"></td>'
                     }
                 }
                 append += '</tr>'
@@ -103,7 +110,7 @@ function getCobranza() {
             //CARTERA POR BUCKET
             append = "<th></th>";
             for (i = 0; i < 3; i++) {
-                append += '<th>' + dataTablas.cartera_datos_bucket[0][i] + '</th>'
+                append += '<th >' + dataTablas.cartera_datos_bucket[0][i] + '</th>'
             }
             for (i = 0; i < 3; i++) {
                 append += '<th>' + dataTablas.cartera_datos_pct_bucket[0][i] + '</th>'
@@ -121,16 +128,16 @@ function getCobranza() {
                 }
 
                 if (i == 10) {
-                    append += '<td>100%</td><td>100%</td><td>100%</td>'
+                    append += '<td class="pct">100%</td><td class="pct">100%</td><td class="pct">100%</td>'
                     break;
                 }
 
                 for (j = 1; j < 5; j++) {
                     if (j < 4) {
-                        append += '<td>' + dataTablas.cartera_datos_pct_bucket[i][j] + '</td>'
+                        append += '<td class="pct">' + dataTablas.cartera_datos_pct_bucket[i][j] + '</td>'
                     }
                     else {
-                        append += '<td class="' + dataTablas.cartera_datos_pct_bucket[i][j] + '"></td>'
+                        append += '<td class=" pct ' + dataTablas.cartera_datos_pct_bucket[i][j] + '"></td>'
                     }
                 }
 
@@ -174,18 +181,18 @@ function getCobranza() {
                         break;
                     }
                     case 6: {
-                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales.cero + '</td>'
-                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales.cero_pct + '</td>'
+                        append += '<td style="padding-top: 32px;" rowspan="2" class="amarillo">' + dataTablas.cartera_datos_operativa_totales.cero + '</td>'
+                        append += '<td style="padding-top: 32px;" rowspan="2" class="amarillo">' + dataTablas.cartera_datos_operativa_totales.cero_pct + '</td>'
                         break;
                     }
-                    case 7: {
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales.bajas + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales.bajas_pct + '</td>'
+                    case 8: {
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales.bajas + '</td>'
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales.bajas_pct + '</td>'
                         break;
                     }
                     case 9: {
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones_pct + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="rojo">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="rojo">' + dataTablas.cartera_datos_operativa_totales.fraudes_defunciones_pct + '</td>'
                         break;
                     }
                     case 11: {
@@ -203,7 +210,7 @@ function getCobranza() {
 
             //CARTERA OPERATIVA
             append = ""
-            
+
             for (i = 0; i < 12; i++) {
                 append += "<tr>";
 
@@ -227,8 +234,8 @@ function getCobranza() {
 
                 switch (i) {
                     case 0: {
-                        append += '<td rowspan="5" style="padding-top: 98px; border-bottom: #535353 3px solid !important;" class="verde margenAbajo">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts + '</td>'
-                        append += '<td rowspan="5" style="padding-top: 98px; border-bottom: #535353 3px solid !important;" class="verde margenAbajo">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts_pct + '</td>'
+                        append += '<td rowspan="5" style="padding-top: 98px; border-bottom: #535353 3px solid !important;" class="verde">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts + '</td>'
+                        append += '<td rowspan="5" style="padding-top: 98px; border-bottom: #535353 3px solid !important;" class="verde">' + dataTablas.cartera_datos_operativa_totales_cobrar.pcts_pct + '</td>'
                         break;
                     }
                     case 5: {
@@ -237,18 +244,18 @@ function getCobranza() {
                         break;
                     }
                     case 6: {
-                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.cero + '</td>'
-                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.cero_pct + '</td>'
+                        append += '<td style="padding-top: 32px;" rowspan="2" class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.cero + '</td>'
+                        append += '<td style="padding-top: 32px;" rowspan="2" class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.cero_pct + '</td>'
                         break;
                     }
-                    case 7: {
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="amarillo">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas_pct + '</td>'
+                    case 8: {
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas + '</td>'
+                        append += '<td class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.bajas_pct + '</td>'
                         break;
                     }
                     case 9: {
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones + '</td>'
-                        append += '<td rowspan="2" style="padding-top: 32px;" class="obscuro">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones_pct + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones + '</td>'
+                        append += '<td rowspan="2" style="padding-top: 32px;" class="rojo">' + dataTablas.cartera_datos_operativa_totales_cobrar.fraudes_defunciones_pct + '</td>'
                         break;
                     }
                     case 11: {
@@ -257,7 +264,6 @@ function getCobranza() {
                         break;
                     }
                 }
-
 
                 append += "</tr>";
             }
@@ -278,16 +284,26 @@ function getCobranza() {
             append = ""
 
             for (i = 1; i < 11; i++) {
+
+                append += '<tr>'
+
                 if (i === 10) {
-                    append += '<tr class="obscuro">'
+                    for (j = 0; j < 4; j++) {
+                        append += '<td>' + dataTablas.cartera_datos_never_paid[i][j] + '</td>'
+                    }
                 }
                 else {
-                    append += '<tr>'
+                    for (j = 0; j < 4; j++) {
+                        if (j == 0) {
+                            append += '<td>' + dataTablas.cartera_datos_never_paid[i][j] + '</td>'
+                        }
+                        else {
+                            append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalleNeverPaid(j - 1, i - 1) + ')">' + dataTablas.cartera_datos_never_paid[i][j] + '</button></td>'
+                        }
+                    }
                 }
 
-                for (j = 0; j < 4; j++) {
-                    append += '<td>' + dataTablas.cartera_datos_never_paid[i][j] + '</td>'
-                }
+
                 append += '</tr>'
             }
             $('#NeverPaidBody').append(append)
@@ -307,6 +323,26 @@ function getCobranza() {
                 append += '</tr>'
             }
             $('#NeverPaidCredBody').append(append)
+
+            append = "";
+
+            for(i = 0; i < 4; i++){
+                append += '<td>' + dataTablas.estimacion_preventiva[0][i] + '</td>'
+            }
+
+            $('#EstimacionPrevHead').append(append)
+
+            append = '';
+
+            for(i = 1; i < 5; i++){
+                append += '<tr>'
+                for(j = 0; j < 4; j++){
+                    append += '<td>' + dataTablas.estimacion_preventiva[i][j] + '</td>'
+                }
+                append += '</tr>'
+            }
+
+            $('#EstimacionPrevBody').append(append)
 
             if (graficaCartera) {
                 graficaCartera.destroy();
@@ -441,6 +477,10 @@ function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos) {
                 yAxes: [
                     {
                         ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            stepValue: 5,
+                            max: 40,
                             callback: function (label) {
                                 return label + '%';
                             }
@@ -448,7 +488,7 @@ function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos) {
                         scaleLabel: {
                             display: true,
                             labelString: 'Porcentaje'
-                        }
+                        },
                     }
                 ]
             }
