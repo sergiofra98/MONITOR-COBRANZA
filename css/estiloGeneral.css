@@ -5,6 +5,7 @@ body{
     margin: auto;
     padding: 24px 0;
     min-width: 1024px;
+    display: block;
 }
 
 .imgMasNomina{
@@ -119,11 +120,6 @@ thead{
     padding-bottom: 12px;
 }
 
-canvas{
-    width: 100%;
-    margin: auto;
-}
-
 
 .rojo{
     background-color: #e64545;
@@ -161,8 +157,8 @@ canvas{
     float: left;
 }
 
-tbody tr:last-of-type{
+table:not(.tablitas) tbody tr:last-of-type{
     background-color: #e2e2f1;
     font-weight: bold;
-    font-size: 14;
+    font-size: 15 ;
 }

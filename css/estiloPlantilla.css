@@ -11,7 +11,6 @@
 
 .tablaCarteraOperativa{
     width: 80%;
-    margin-left: 1%;
 }
 
 .tablaCarteraOperativa:last-of-type{
@@ -27,9 +26,8 @@
     margin-bottom: 24px !important;
 }
 
-.tablitas tr td{
-    background-color: white;
-    font-weight: normal;
+.tablitas td{
+    font-size: 15 !important;
 }
 
 table td{
@@ -44,23 +42,48 @@ tr td:first-of-type{
     border-bottom: #535353 3px solid !important;
 }
 
-@media only screen and (max-width: 1500px) {
-    td:nth-of-type(7), 
-    td:nth-of-type(8), 
-    td:nth-of-type(14), 
-    td:nth-of-type(15){
-        font-size: 12px;
-    }
+
+
+.tablaCarteraOperativa td:nth-of-type(7), 
+.tablaCarteraOperativa td:nth-of-type(8){
+        font-size: 15px;
 }
 
 
-
 canvas{
-    height: 150px;
-    width: 100%;
+    height: 600px !important;
+    width: 100% !important;
     float: left;
 }
 
 .pct{
     text-align: center;
+}
+
+.body{
+    margin-top: 24px;
+}
+
+#divCartera .col,
+#divCarteraBuckets .col,
+#divEstimacionPrev .col,
+#divNeverPaid .col{
+    width: 50%;
+}
+
+#divCartera:first-child{
+    padding: 20px;
+}
+
+#vsBody tr td{
+    font-weight: bold;
+    text-align: center;
+}
+
+#CarteraOperativaHead th{
+    width: 12.2%;
+}
+
+#CarteraOperativaHead th:first-of-type{
+    width: 14%;
 }

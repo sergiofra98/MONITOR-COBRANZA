@@ -17,7 +17,7 @@ function getInactividadAtrazo() {
             for (i; i < dataTablas.datos.length; i++) {
 
                 if(i === 12){
-                    append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
+                    append += '<tr><td>' + dataTablas.datos[i].nombre + ' ($)</td>'
                     append += '<td>' + dataTablas.datos[i].actual + '</td>'
                     append += '<td>' + dataTablas.datos[i].atraso_30 + '</td>'
                     append += '<td>' + dataTablas.datos[i].atraso_60 + '</td>'
@@ -32,7 +32,7 @@ function getInactividadAtrazo() {
                     append += '<td>' + dataTablas.datos[i].total + '</td></tr>'
                 }
                 else{
-                    append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
+                    append += '<tr><td>' + dataTablas.datos[i].nombre + ' ($) </td>'
                     append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].actual + '</button></td>'
                     append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_30 + '</button></td>'
                     append += '<td><button class="btn btn-link" onclick="modalDetalle(' + generarStringDetalle(i, 0) + ')">' + dataTablas.datos[i].atraso_60 + '</button></td>'
@@ -53,7 +53,7 @@ function getInactividadAtrazo() {
             append = ''
 
             for (i = 0; i < dataTablas.datos.length; i++) {
-                append += '<tr><td>' + dataTablas.datos[i].nombre + '</td>'
+                append += '<tr><td>' + dataTablas.datos[i].nombre + ' (%)</td>'
                 append += '<td>' + dataTablas.porcentajes[i].actual + '</td>'
                 append += '<td>' + dataTablas.porcentajes[i].atraso_30 + '</td>'
                 append += '<td>' + dataTablas.porcentajes[i].atraso_60 + '</td>'

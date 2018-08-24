@@ -93,7 +93,9 @@ function getCobranza() {
 
             for (i = 1; i < 3; i++) {
                 append += '<tr>'
-                for (j = 0; j < 4; j++) {
+                append += '<th>' + dataTablas.icv[i][0] + '</th>'
+
+                for (j = 1; j < 4; j++) {
                     append += '<td>' + dataTablas.icv[i][j] + '</td>'
                 }
                 append += '</tr>'
@@ -356,7 +358,8 @@ function getCobranza() {
                 [parseFloat(dataTablas.cartera_datos_pct[1][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][3].replace(/%/g, ''))],
                 '#canvasCartera',
                 'CARTERA',
-                ["CASTIGO FISCAL", "CASTIGO CONTABLE", "VENCIDA", "VIGENTE"]
+                ["CASTIGO FISCAL", "CASTIGO CONTABLE", "VENCIDA", "VIGENTE"],
+                false
             );
 
             generarCharts(
@@ -366,7 +369,8 @@ function getCobranza() {
                 [parseFloat(dataTablas.cartera_datos_pct_bucket[1][3].replace(/%/g, '')).toFixed(2) - 0.1, (parseFloat(dataTablas.cartera_datos_pct_bucket[2][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][3].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[5][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][3].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[8][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][3].replace(/%/g, ''))).toFixed(2)],
                 '#canvasCarteraBuckets',
                 'CARTERA POR BUCKETS',
-                ["180+", "90-179", "1-89", "0"]
+                ["180+", "90-179", "1-89", "0"],
+                true
             )
 
 
@@ -419,7 +423,80 @@ function modalDetalle(tipo, tiempo) {
 
 }
 
-function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos) {
+function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos,buckets) {
+    if(buckets){
+        graficaCartera = new Chart($(grafica), {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [
+                    {
+                        label: textos[3],
+                        backgroundColor: ["#55c555", "#55c555", "#55c555"],
+                        data: [mes1[0], mes2[0], mes3[0]],
+                        stack: 4
+                    },
+                    {
+                        label: textos[2],
+                        backgroundColor: ["#ff9000", "#ff9000", "#ff9000"],
+                        data: [mes1[1], mes2[1], mes3[1]],
+                        stack: 4
+                    },
+                    {
+                        label: textos[1],
+                        backgroundColor: ["#ff0000", "#ff0000", "#ff0000"],
+                        data: [mes1[2], mes2[2], mes3[2]],
+                        stack: 4
+                    },
+                    {
+                        label: textos[0],
+                        backgroundColor: ["#a50000", "#a50000", "#a50000"],
+                        data: [mes1[3], mes2[3], mes3[3]],
+                        stack: 4
+                    }           
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                title: {
+                    display: true,
+                    text: titulo
+                },
+                legend: {
+                    position: "bottom"
+                },
+                tooltips: {
+                    mode: 'label',
+                    label: 'mylabel',
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return tooltipItem.yLabel + '%';
+                        },
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        barPercentage: 0.6
+                    }],
+                    yAxes: [
+                        {
+                            ticks: {
+                                callback: function (label) {
+                                    return label + '%';
+                                }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Porcentaje'
+                            },
+                        }
+                    ]
+                }
+            }
+        });
+        return;
+    }
     graficaCartera = new Chart($(grafica), {
         type: 'bar',
         data: {
@@ -472,7 +549,7 @@ function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos) {
             },
             scales: {
                 xAxes: [{
-                    barPercentage: 0.4
+                    barPercentage: 0.6
                 }],
                 yAxes: [
                     {
@@ -480,7 +557,7 @@ function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos) {
                             beginAtZero: true,
                             steps: 10,
                             stepValue: 5,
-                            max: 40,
+                            max: 30,
                             callback: function (label) {
                                 return label + '%';
                             }
