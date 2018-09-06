@@ -229,10 +229,10 @@ def general():
 	totales_cartera['CASTIGO_FISCAL'] = 0
 	totales_cartera['TOTAL'] = 0
 
+	lista_retorno['vsVigente'] = '{:0,.2f}'.format(93.72) +'%' 
 
 	for i, row in enumerate(lista_cartera, 1):
 		registro = {}
-		registro['id'] = i
 		registro['nombre'] = row[0]
 		registro['VIGENTE'] = '{:0,.0f}'.format(row[1])
 		registro['VENCIDA'] = '{:0,.0f}'.format(row[2])
@@ -247,8 +247,6 @@ def general():
 		totales_cartera['TOTAL'] += (row[1] + row[2] + row[3] + row[4])
 		
 		lista_resultado_cartera.append(registro)
-
-	totales_cartera['id'] = len(lista_resultado_cartera) + 1
 
 	lista_resultado_cartera_totales['pcts'] = float(lista_resultado_cartera[0]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[1]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[2]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[3]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[4]['TOTAL'].replace(',',''))
 	lista_resultado_cartera_totales['instalar'] = float(lista_resultado_cartera[5]['TOTAL'].replace(',',''))
@@ -295,7 +293,6 @@ def general():
 
 	for i, row in enumerate(lista_cartera, 1):
 		registro = {}
-		registro['id'] = i
 		registro['nombre'] = row[0]
 		registro['VIGENTE'] = '{:0,.0f}'.format(row[1]*1.4)
 		registro['VENCIDA'] = '{:0,.0f}'.format(row[2]*1.4)
@@ -310,8 +307,6 @@ def general():
 		totales_cartera['TOTAL'] += ((row[1] + row[2] + row[3] + row[4])*1.4)
 		
 		lista_resultado_cartera.append(registro)
-
-	totales_cartera['id'] = len(lista_resultado_cartera) + 1
 
 	lista_resultado_cartera_totales['pcts'] = float(lista_resultado_cartera[0]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[1]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[2]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[3]['TOTAL'].replace(',','')) + float(lista_resultado_cartera[4]['TOTAL'].replace(',',''))
 	lista_resultado_cartera_totales['instalar'] = float(lista_resultado_cartera[5]['TOTAL'].replace(',',''))
@@ -487,7 +482,6 @@ def inactividad_atraso():
 
 	for i, row in enumerate(lista_datos, 1):
 		registro = {}
-		registro['id'] = i
 		registro['nombre'] = row[0]
 		registro['actual'] = '{:0,.0f}'.format(row[1])
 		registro['atraso_30'] = '{:0,.0f}'.format(row[2])
@@ -535,7 +529,6 @@ def inactividad_atraso():
 	totales_pct['atraso_mas_270'] = 0
 	for i, row in enumerate(lista_datos, 1):
 		registro = {}
-		registro['id'] = i
 		registro['nombre'] = row[0]
 		registro['actual'] = '{:0,.2f}%'.format(((row[1]*1.00)/totales['total'])*100)
 		registro['atraso_30'] = '{:0,.2f}%'.format(((row[2]*1.00)/totales['total'])*100)
@@ -561,7 +554,6 @@ def inactividad_atraso():
 		totales_pct['atraso_mas_270'] += (row[11]/totales['total'])
 		lista_resultado_pct.append(registro)
 
-	totales['id'] = len(lista_resultado) + 1
 	totales['actual'] = '{:0,.0f}'.format(totales['actual'])
 	totales['atraso_30'] = '{:0,.0f}'.format(totales['atraso_30'])
 	totales['atraso_60'] = '{:0,.0f}'.format(totales['atraso_60'])
@@ -575,7 +567,6 @@ def inactividad_atraso():
 	totales['atraso_mas_270'] = '{:0,.0f}'.format(totales['atraso_mas_270'])
 	totales['total'] = '{:0,.0f}'.format(totales['total'])
 
-	totales_pct['id'] = len(lista_resultado_pct) + 1
 	totales_pct['actual'] = '{:0,.2f}%'.format((totales_pct['actual'])*100)
 	totales_pct['atraso_30'] = '{:0,.2f}%'.format((totales_pct['atraso_30'])*100)
 	totales_pct['atraso_60'] = '{:0,.2f}%'.format((totales_pct['atraso_60'])*100)

@@ -21,6 +21,32 @@ function generarStringDetalleNeverPaid(i, j) {
 }
 
 function getCobranza() {
+
+    if (graficaCartera) {
+        graficaCartera.destroy()
+        graficaCarteraBuckets.destroy()
+    }
+
+    $('.tablaCarteraHead').html('');
+    $('#tablaColocacionBody').html('');
+    $('#tablaCarteraContable').html('');
+    $('#tablaICVHead').html('');
+    $('#tablaCarteraContableHead').html('');;
+    $('#tablaICV').html('');
+    $('#VSBody').html('');
+    $('#CarteraHead').html('');
+    $('#CarteraBody').html('');
+    $('#CarteraOperativaBody').html('');
+    $('#CarteraOperativaCobrarBody').html('');
+    $('#NeverPaidHead').html('');
+    $('#NeverPaidCredHead').html('');
+    $('#NeverPaidBody').html('');
+    $('#NeverPaidCredBody').html('');
+    $('#EstimacionPrevHead').html('');
+    $('#vsVigente').html('');
+    $('#EstimacionPrevBody').html('');
+
+
     $.getJSON(linkCobranza + "/general", {},
         function (dataTablas) {
             var append = ""
@@ -328,17 +354,21 @@ function getCobranza() {
 
             append = "";
 
-            for(i = 0; i < 4; i++){
+            for (i = 0; i < 4; i++) {
                 append += '<td>' + dataTablas.estimacion_preventiva[0][i] + '</td>'
             }
 
             $('#EstimacionPrevHead').append(append)
 
+
+            $('#vsVigente').append(dataTablas.vsVigente)
+
+
             append = '';
 
-            for(i = 1; i < 5; i++){
+            for (i = 1; i < 5; i++) {
                 append += '<tr>'
-                for(j = 0; j < 4; j++){
+                for (j = 0; j < 4; j++) {
                     append += '<td>' + dataTablas.estimacion_preventiva[i][j] + '</td>'
                 }
                 append += '</tr>'
@@ -351,29 +381,167 @@ function getCobranza() {
             }
 
             console.log(dataTablas);
-            generarCharts(
-                [dataTablas.cartera_datos[0][1], dataTablas.cartera_datos[0][2], dataTablas.cartera_datos[0][3]],
-                [parseFloat(dataTablas.cartera_datos_pct[1][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][1].replace(/%/g, ''))],
-                [parseFloat(dataTablas.cartera_datos_pct[1][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][2].replace(/%/g, ''))],
-                [parseFloat(dataTablas.cartera_datos_pct[1][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][3].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][3].replace(/%/g, ''))],
-                '#canvasCartera',
-                'CARTERA',
-                ["CASTIGO FISCAL", "CASTIGO CONTABLE", "VENCIDA", "VIGENTE"],
-                false
-            );
 
-            generarCharts(
-                [dataTablas.cartera_datos[0][1], dataTablas.cartera_datos[0][2], dataTablas.cartera_datos[0][3]],
-                [parseFloat(dataTablas.cartera_datos_pct_bucket[1][1].replace(/%/g, '')).toFixed(2) - 0.1, (parseFloat(dataTablas.cartera_datos_pct_bucket[2][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][1].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[5][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][1].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[8][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][1].replace(/%/g, ''))).toFixed(2)],
-                [parseFloat(dataTablas.cartera_datos_pct_bucket[1][2].replace(/%/g, '')).toFixed(2) - 0.1, (parseFloat(dataTablas.cartera_datos_pct_bucket[2][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][2].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[5][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][2].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[8][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][2].replace(/%/g, ''))).toFixed(2)],
-                [parseFloat(dataTablas.cartera_datos_pct_bucket[1][3].replace(/%/g, '')).toFixed(2) - 0.1, (parseFloat(dataTablas.cartera_datos_pct_bucket[2][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][3].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[5][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][3].replace(/%/g, ''))).toFixed(2), (parseFloat(dataTablas.cartera_datos_pct_bucket[8][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][3].replace(/%/g, ''))).toFixed(2)],
-                '#canvasCarteraBuckets',
-                'CARTERA POR BUCKETS',
-                ["180+", "90-179", "1-89", "0"],
-                true
-            )
+            graficaCartera = new Chart($('#canvasCartera'), {
+                type: 'bar',
+                data: {
+                    labels: [dataTablas.cartera_datos[0][1], dataTablas.cartera_datos[0][2], dataTablas.cartera_datos[0][3]],
+                    datasets: [
+                        {
+                            label: "CASTIGO FISCAL",
+                            backgroundColor: ["#a50000", "#a50000", "#a50000"],
+                            data: [parseFloat(dataTablas.cartera_datos_pct[4][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[4][3].replace(/%/g, ''))],
+                            stack: 4
+                        },
+                        {
+                            label: "CASTIGO CONTABLE",
+                            backgroundColor: ["#ff0000", "#ff0000", "#ff0000"],
+                            data: [parseFloat(dataTablas.cartera_datos_pct[3][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[3][3].replace(/%/g, ''))],
+                            stack: 4
+                        },
+                        {
+                            label: "VENCIDA",
+                            backgroundColor: ["#ff9000", "#ff9000", "#ff9000"],
+                            data: [parseFloat(dataTablas.cartera_datos_pct[2][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[2][3].replace(/%/g, ''))],
+                            stack: 4
+                        },
+                        {
+                            label: "VIGENTE",
+                            backgroundColor: ["#55c555", "#55c555", "#55c555"],
+                            data: [parseFloat(dataTablas.cartera_datos_pct[1][1].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[1][2].replace(/%/g, '')), parseFloat(dataTablas.cartera_datos_pct[1][3].replace(/%/g, ''))],
+                            stack: 4
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'CARTERA'
+                    },
+                    legend: {
+                        position: "bottom"
+                    },
+                    tooltips: {
+                        mode: 'label',
+                        label: 'mylabel',
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return tooltipItem.yLabel + '%';
+                            },
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            barPercentage: 0.6
+                        }],
+                        yAxes: [
+                            {
+                                ticks: {
+                                    min: 0,
+                                    max: 30,
+                                    stepSize: 5,
+                                    callback: function (label) {
+                                        return label + '%';
+                                    }
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Porcentaje'
+                                },
+                            }
+                        ]
+                    }
+                }
+            });
 
-
+            graficaCarteraBuckets = new Chart($('#canvasCarteraBuckets'), {
+                type: 'bar',
+                data: {
+                    labels: [dataTablas.cartera_datos[0][1], dataTablas.cartera_datos[0][2], dataTablas.cartera_datos[0][3]],
+                    datasets: [
+                        {
+                            label: "0",
+                            backgroundColor: ["#55c555", "#55c555", "#55c555"],
+                            data: [
+                                parseFloat(dataTablas.cartera_datos_pct_bucket[1][1].replace(/%/g, '') - 0.1).toFixed(2),
+                                parseFloat(dataTablas.cartera_datos_pct_bucket[1][2].replace(/%/g, '') - 0.1).toFixed(2),
+                                parseFloat(dataTablas.cartera_datos_pct_bucket[1][3].replace(/%/g, '') - 0.1).toFixed(2)
+                            ],
+                            stack: 4
+                        },
+                        {
+                            label: "1-89",
+                            backgroundColor: ["#ff9000", "#ff9000", "#ff9000"],
+                            data: [
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[2][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][1].replace(/%/g, ''))).toFixed(2),
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[2][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][2].replace(/%/g, ''))).toFixed(2),
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[2][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[3][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[4][3].replace(/%/g, ''))).toFixed(2),
+                            ],
+                            stack: 4
+                        },
+                        {
+                            label: "90-179",
+                            backgroundColor: ["#ff0000", "#ff0000", "#ff0000"],
+                            data: [
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[5][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][1].replace(/%/g, ''))).toFixed(2),
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[5][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][2].replace(/%/g, ''))).toFixed(2),
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[5][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[6][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[7][3].replace(/%/g, ''))).toFixed(2),
+                            ],
+                            stack: 4
+                        },
+                        {
+                            label: "180+",
+                            backgroundColor: ["#a50000", "#a50000", "#a50000"],
+                            data: [
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[8][1].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][1].replace(/%/g, ''))).toFixed(2),
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[8][2].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][2].replace(/%/g, ''))).toFixed(2),
+                                (parseFloat(dataTablas.cartera_datos_pct_bucket[8][3].replace(/%/g, '')) + parseFloat(dataTablas.cartera_datos_pct_bucket[9][3].replace(/%/g, ''))).toFixed(2)
+                            ],
+                            stack: 4
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'CARTERA POR BUCKETS'
+                    },
+                    legend: {
+                        position: "bottom"
+                    },
+                    tooltips: {
+                        mode: 'label',
+                        label: 'mylabel',
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return tooltipItem.yLabel + '%';
+                            },
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            barPercentage: 0.6
+                        }],
+                        yAxes: [
+                            {
+                                ticks: {
+                                    callback: function (label) {
+                                        return label + '%';
+                                    }
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Porcentaje'
+                                },
+                            }
+                        ]
+                    }
+                }
+            });
         })
         .done(function () {
             $('#body, #titulo').css("display", "flex");
@@ -421,156 +589,6 @@ function modalDetalle(tipo, tiempo) {
         });
 
 
-}
-
-function generarCharts(meses, mes1, mes2, mes3, grafica, titulo, textos,buckets) {
-    if(buckets){
-        graficaCartera = new Chart($(grafica), {
-            type: 'bar',
-            data: {
-                labels: meses,
-                datasets: [
-                    {
-                        label: textos[3],
-                        backgroundColor: ["#55c555", "#55c555", "#55c555"],
-                        data: [mes1[0], mes2[0], mes3[0]],
-                        stack: 4
-                    },
-                    {
-                        label: textos[2],
-                        backgroundColor: ["#ff9000", "#ff9000", "#ff9000"],
-                        data: [mes1[1], mes2[1], mes3[1]],
-                        stack: 4
-                    },
-                    {
-                        label: textos[1],
-                        backgroundColor: ["#ff0000", "#ff0000", "#ff0000"],
-                        data: [mes1[2], mes2[2], mes3[2]],
-                        stack: 4
-                    },
-                    {
-                        label: textos[0],
-                        backgroundColor: ["#a50000", "#a50000", "#a50000"],
-                        data: [mes1[3], mes2[3], mes3[3]],
-                        stack: 4
-                    }           
-                ]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                title: {
-                    display: true,
-                    text: titulo
-                },
-                legend: {
-                    position: "bottom"
-                },
-                tooltips: {
-                    mode: 'label',
-                    label: 'mylabel',
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            return tooltipItem.yLabel + '%';
-                        },
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        barPercentage: 0.6
-                    }],
-                    yAxes: [
-                        {
-                            ticks: {
-                                callback: function (label) {
-                                    return label + '%';
-                                }
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Porcentaje'
-                            },
-                        }
-                    ]
-                }
-            }
-        });
-        return;
-    }
-    graficaCartera = new Chart($(grafica), {
-        type: 'bar',
-        data: {
-            labels: meses,
-            datasets: [
-                {
-                    label: textos[0],
-                    backgroundColor: ["#a50000", "#a50000", "#a50000"],
-                    data: [mes1[3], mes2[3], mes3[3]],
-                    stack: 4
-                },
-                {
-                    label: textos[1],
-                    backgroundColor: ["#ff0000", "#ff0000", "#ff0000"],
-                    data: [mes1[2], mes2[2], mes3[2]],
-                    stack: 4
-                },
-                {
-                    label: textos[2],
-                    backgroundColor: ["#ff9000", "#ff9000", "#ff9000"],
-                    data: [mes1[1], mes2[1], mes3[1]],
-                    stack: 4
-                },
-                {
-                    label: textos[3],
-                    backgroundColor: ["#55c555", "#55c555", "#55c555"],
-                    data: [mes1[0], mes2[0], mes3[0]],
-                    stack: 4
-                }
-            ]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            title: {
-                display: true,
-                text: titulo
-            },
-            legend: {
-                position: "bottom"
-            },
-            tooltips: {
-                mode: 'label',
-                label: 'mylabel',
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        return tooltipItem.yLabel + '%';
-                    },
-                }
-            },
-            scales: {
-                xAxes: [{
-                    barPercentage: 0.6
-                }],
-                yAxes: [
-                    {
-                        ticks: {
-                            beginAtZero: true,
-                            steps: 10,
-                            stepValue: 5,
-                            max: 30,
-                            callback: function (label) {
-                                return label + '%';
-                            }
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Porcentaje'
-                        },
-                    }
-                ]
-            }
-        }
-    });
 }
 
 function descargarDetalle() {
