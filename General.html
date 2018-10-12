@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
     <link rel="stylesheet" href="css/estiloGeneral.css">
     <link rel="stylesheet" href="css/estiloPlantilla.css">
 
@@ -26,7 +28,8 @@
 
 <body>
     <!-- Modal -->
-    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -66,7 +69,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnCSV" data-dismiss="modal">Descargar detalle&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-success" id="btnCSV" data-dismiss="modal">Descargar
+                        detalle&nbsp;&nbsp;&nbsp;
                         <i class="fas fa-file-excel"></i>
                     </button>
                 </div>
@@ -86,23 +90,20 @@
                 <div>
                     <label for="mes">Periodo: </label>
                 </div>
-                <select required name="inputMes" id="inputMes" class="form-control">
-
-                </select>
-                <select required name="inputAno" id="inputAno" class="form-control">
+                <select required name="inputFecha" id="inputFecha" class="form-control">
 
                 </select>
             </div>
             <div class="col-sm">
-                <label for="division">Buscar Por: </label>
-                <select required name="inputDivision" id="inputDivision" class="form-control">
+                <label for="inputTipo">Buscar Por: </label>
+                <select required name="inputTipo" id="inputTipo" class="form-control">
                     <option value="ANALISTA">Analista</option>
                     <option value="CORRESPONSAL">Corresponsal</option>
                 </select>
             </div>
             <div class="col-sm">
                 <label for="mes">Nombre: </label>
-                <select required name="inputMes" id="inputNombre" class="form-control">
+                <select required name="inputCorresponsal" id="inputCorresponsal" class="form-control">
                     <option value="201801">TODAS</option>
                     <option value="201802">GDF</option>
                     <option value="201802">SEF CHIAPAS</option>

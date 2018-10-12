@@ -1,13 +1,13 @@
 # # -*- coding: utf-8 -*-
 
-from flask import Flask 
+from flask import Flask
 from flask import request
 from functools import reduce
 
+from big_query_conexion import obtener_datos
 import json
 import datetime
 import locale
-import time
 
 locale.setlocale( locale.LC_ALL, '' )
 #locale.currency( row[1], grouping = True ) 
@@ -37,7 +37,41 @@ def general():
 	
 	#se realiza la consulta
 	lista_retorno = {}
+	temp = []
+
+	query = '''
+	SELECT
+		estatus_contable,
+		SUM(CASE
+			WHEN fecha_cierre = '2018-04-30' THEN saldo_contable
+			ELSE NULL END) AS mes,
+		SUM(CASE
+			WHEN fecha_cierre = '2018-03-31' THEN saldo_contable
+			ELSE NULL END) AS mes_a,
+		SUM(CASE
+			WHEN fecha_cierre = '2017-04-30' THEN saldo_contable
+			ELSE NULL END) AS mes_aa
+	FROM
+		BUO_Masnomina.contratos_hist
+	WHERE
+		1=1
+		AND clave_corresponsal = 322
+	GROUP BY
+		estatus_contable
+	ORDER BY
+		estatus_contable DESC'''
 	
+	temp = obtener_datos(query, False, ())
+	
+
+
+	lista_cartera = [
+		['VIGENTE', temp[0][1], temp[0][2], temp[0][3]],
+		['VENCIDA', temp[1][1], temp[1][2], temp[1][2]],
+		['CASTIGO CONTABLE', temp[3][1], temp[3][2], temp[3][3]],
+		['CASTIGO FISCAL', temp[2][1], temp[2][2], temp[2][3]]
+	]
+
 
 	#START CARTERA
 	lista_resultado_cartera = []
@@ -45,13 +79,7 @@ def general():
 	lista_resultado_cartera_vigente = []
 	lista_resultado_cartera_icv = []
 
-	lista_cartera=[
-					['VIGENTE', 600628 , 714611 , 715812],
-					['VENCIDA', 19957 , 15971 , 16440],
-					['CASTIGO CONTABLE', 30407 , 32239 , 32878],
-					['CASTIGO FISCAL', 66738 , 98988 , 101281]
-			]
-
+	
 	#Obtenemos totales
 	mes1 = 'ABR17'
 	mes2 = 'MAR18'
@@ -97,7 +125,6 @@ def general():
 	lista_resultado_cartera_vigente.append(lista_cartera[0][1] + lista_cartera[1][1])
 	lista_resultado_cartera_vigente.append(lista_cartera[0][2] + lista_cartera[1][2])
 	lista_resultado_cartera_vigente.append(lista_cartera[0][3] + lista_cartera[1][3])
-	print(lista_resultado_cartera_vigente)
 
 	lista_resultado_cartera_icv.append(['NOMBRE', mes1, mes2, mes3])
 
@@ -140,16 +167,41 @@ def general():
 	lista_resultado_cartera = []
 	lista_resultado_cartera_pct = []
 
+	query = '''SELECT
+		bucket,
+		SUM(CASE
+			WHEN fecha_cierre = '2018-04-30' THEN saldo_contable
+			ELSE NULL END) AS mes,
+		SUM(CASE
+			WHEN fecha_cierre = '2018-03-31' THEN saldo_contable
+			ELSE NULL END) AS mes_a,
+		SUM(CASE
+			WHEN fecha_cierre = '2017-04-30' THEN saldo_contable
+			ELSE NULL END) AS mes_aa
+	FROM
+		BUO_Masnomina.contratos_hist
+	WHERE
+		1 = 1
+		AND clave_corresponsal = 322
+	GROUP BY
+		bucket
+	ORDER BY
+		bucket'''
+
+	temp = obtener_datos(query, False, ())
+
+	print(temp)
+
 	lista_cartera=[
-					['0', 497986 , 598494 , 626969],
-					['1-29', 58264 , 34279 , 40925],
-					['30-59', 10912 , 56604 , 14171],
-					['60-89', 33466 , 25234 , 33747],
-					['90-119', 9312 , 3160 , 8231],
-					['120-149', 3430 , 6552 , 2595],
-					['150-179', 7215 , 6259 , 5614],
-					['180-364', 30407 , 32239 , 32878],
-					['365 o +', 66738 , 98988 , 101281]
+					['0', temp[0][1] , temp[0][2]  , temp[0][3] ],
+					['1-29', temp[1][1] , temp[1][2] , temp[1][3]],
+					['30-59', temp[5][1] , temp[5][2] , temp[5][3]],
+					['60-89', temp[7][1] , temp[7][2] , temp[7][3]],
+					['90-119', temp[8][1] , temp[8][2] , temp[8][3]],
+					['120-149', temp[2][1] , temp[2][2] , temp[2][3]],
+					['150-179', temp[3][1] , temp[3][2] , temp[3][3]],
+					['180-364', temp[4][1] , temp[4][2] , temp[4][3]],
+					['365 o +', temp[6][1] , temp[6][2] , temp[6][3]]
 			]
 
 	#Obtenemos totales

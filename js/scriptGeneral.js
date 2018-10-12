@@ -4,23 +4,39 @@ var mes = currentTime.getMonth();
 var ano = currentTime.getFullYear();
 
 $(document).ready(function () {
-    append = "<option hidden selected disabled>Mes</option>";
 
-    for (let i = 0; i < 12; i++) {
-            append += "<option>" + getStringMes(i) + "</option>"
+
+    append = "<option hidden selected disabled>Elija un Periodo</option>";
+    let i = 0
+    let flex = 0
+    let band = false
+    for (i; i < 13; i++) {
+        flex = mes - i
+        if (i === mes) {
+            band = true
+        }
+
+        if (band) {
+            append += '<option value="' + (ano - 1) + formatearMes(flex + 12) + '">' + formatearMes(flex + 12) + '/' + (ano - 1) + "</option>";
+        }
+        else {
+            append += '<option value="' + ano + formatearMes(flex) + '">' + formatearMes(flex) + '/' + ano + "</option>";
+        }
     }
 
-    $("#inputMes").append(append)
-
-    append = "<option hidden selected disabled>Año</option>";
-
-    for (let i = 0; i < 6; i++) {
-        append += "<option> " + (ano - i) + "</option>"
-    }
-
-    $("#inputAno").append(append)
+    $("#inputFecha").append(append)
 
 });
+
+function formatearMes(mes) {
+    if (mes < 10) {
+        return "0" + mes
+    }
+    else {
+        return mes
+    }
+}
+
 
 function getStringMes(i) {
     switch (i) {

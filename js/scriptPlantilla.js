@@ -47,7 +47,11 @@ function getCobranza() {
     $('#EstimacionPrevBody').html('');
 
 
-    $.getJSON(linkCobranza + "/general", {},
+    $.getJSON(linkCobranza + "/general", {
+        mes: $('#inputFecha').val(),
+        tipo: $('#inputTipo').val(),
+        corresponsal: $('#inputCorresponsal').val()
+    },
         function (dataTablas) {
             var append = ""
             var i = 0;
