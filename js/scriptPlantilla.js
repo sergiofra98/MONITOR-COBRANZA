@@ -1,11 +1,6 @@
 var graficaCartera = 0;
 var graficaCarteraBuckets = 0;
 
-$(function () {
-    getCobranza();
-    generarCharts();
-});
-
 var cantidadEnum = ['cien', 'noventa', 'sesenta', 'treinta', 'uno', 'porInstalar', 'cero', 'bajasRecuperacion', 'bajas', 'defunciones', 'fraudes'];
 var tipoEnum = ['vigente', 'vencida', 'castigoContable', 'castigoFiscal'];
 
@@ -20,7 +15,7 @@ function generarStringDetalleNeverPaid(i, j) {
     return "'" + mesEnum[i] + "' , '" + anioEnum[j] + "'"
 }
 
-function getCobranza() {
+function getColocacion() {
 
     if (graficaCartera) {
         graficaCartera.destroy()

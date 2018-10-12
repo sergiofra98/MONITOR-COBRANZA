@@ -26,6 +26,21 @@ $(document).ready(function () {
 
     $("#inputFecha").append(append)
 
+    $.getJSON(linkCobranza + "/corresponsales", {},
+        function (dataTablas) {
+            console.log(dataTablas)
+            append = ''
+            append += '<option value="0" disabled selected hidden>Seleccione un corresponsal</option>'
+
+            for( let i = 0 ; i < dataTablas.length; i++){
+                append += '<option value="' + dataTablas[i][0] + '">' + dataTablas[i][1] + '</option>'
+            }
+
+            $('#inputCorresponsal').append(append)
+        })
+        .done(function () {})
+        .fail(function (textStatus) {});
+
 });
 
 function formatearMes(mes) {

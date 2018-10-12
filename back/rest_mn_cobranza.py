@@ -26,40 +26,53 @@ url_base='/MasNomina/MonitorCobranza'
 def hello():
 	return "Monitor Cobranza Estatus[OK]"
 
+def generar_fecha_corte(mes, anio):
+	switcher = {
+		1: '31',
+		3: '31',
+		5: '31',
+		7: '31',
+		8: '31',
+		10: '31',
+		12: '31',
+		4: '30',
+		6: '30',
+		9: '30',
+		11: '30',
+		2: '28'
+	}
+
+	if mes < 10:
+		return str(anio) + '-0' + str(mes) + '-' +switcher[mes]
+	else:
+		return str(anio) + '-' + str(mes) + '-' +switcher[mes]
+
+
 @app.route(url_base+'/general',methods=['GET']) 
 def general():
-	division = request.args.get('division')
+	tipo = request.args.get('tipo')
+	corresponsal = request.args.get('corresponsal')
 	mes = request.args.get('mes')
-	if division == None:
-		print('No limita consulta por division')#define consulta para toda las divisiones
-	if mes == None:
-		print('Limita a mes actual')#define consulta para mes actual
-	
+
 	#se realiza la consulta
+	mes_numero = int(mes[4] + mes[5])
+	anio = int(mes[0] + mes[1] + mes[2] + mes[3])
+
 	lista_retorno = {}
 	temp = []
 
-	query = '''
-	SELECT
-		estatus_contable,
-		SUM(CASE
-			WHEN fecha_cierre = '2018-04-30' THEN saldo_contable
-			ELSE NULL END) AS mes,
-		SUM(CASE
-			WHEN fecha_cierre = '2018-03-31' THEN saldo_contable
-			ELSE NULL END) AS mes_a,
-		SUM(CASE
-			WHEN fecha_cierre = '2017-04-30' THEN saldo_contable
-			ELSE NULL END) AS mes_aa
-	FROM
-		BUO_Masnomina.contratos_hist
-	WHERE
-		1=1
-		AND clave_corresponsal = 322
-	GROUP BY
-		estatus_contable
-	ORDER BY
-		estatus_contable DESC'''
+	query = " SELECT estatus_contable, SUM(CASE "
+	query += "WHEN fecha_cierre = '" + generar_fecha_corte(mes_numero, anio) + "' THEN saldo_contable "
+	query += "ELSE NULL END) AS mes, SUM(CASE "
+	query += "WHEN fecha_cierre = '" + generar_fecha_corte(mes_numero-1, anio) + "' THEN saldo_contable "
+	query += "ELSE NULL END) AS mes_a,	SUM(CASE "
+	query += "WHEN fecha_cierre = '" + generar_fecha_corte(mes_numero , anio-1) + "' THEN saldo_contable "
+	query += "ELSE NULL END) AS mes_aa FROM BUO_Masnomina.contratos_hist WHERE 1=1 "
+	if(int(corresponsal) != 0):
+		query += "AND clave_corresponsal = " + corresponsal
+	query += " GROUP BY estatus_contable ORDER BY estatus_contable DESC "
+
+	print query
 	
 	temp = obtener_datos(query, False, ())
 	
@@ -673,6 +686,22 @@ def inactividad_atraso():
 	lista_retorno['resumen'] = lista_resumen
 
 	return json.dumps(lista_retorno)
+
+@app.route(url_base+'/corresponsales',methods=['GET']) 
+def corresponsales():
+
+	corresponsales = obtener_datos(
+		"""SELECT
+			DISTINCT clave_corresponsal,
+			razon_social
+		FROM
+			BUO_Masnomina.contratos_hist
+		ORDER BY
+			razon_social""",
+		False,
+		())
+
+	return json.dumps(corresponsales)
 
 @app.route(url_base+'/inactividad_atraso_detalle',methods=['GET']) 
 def inactividad_atraso_detalle():
